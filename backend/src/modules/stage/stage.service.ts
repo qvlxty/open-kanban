@@ -32,15 +32,17 @@ export class StageService {
   }
 
   getKanban(projectId: number) {
-    return this.stageRepo
-      .createQueryBuilder('v')
-      .leftJoinAndSelect('v.tasks', 't')
-      .leftJoinAndSelect('t.user', 'u')
-      .orderBy({ id: 'asc' })
-      .orderBy({ tasks: { order: 'asc' } })
-      .select(['id','title'])
-      .where({ project: projectId })
-      .getResult()
+    return this.stageRepo.findAll({
+      where: { project: projectId, },
+      fields: ['id','title','tasks.id','tasks.order','tasks.createdDateAt','tasks.dueDate','tasks.title'],
+      populate: ['tasks', 'tasks.user'],
+      orderBy: {
+        id: 'asc',
+        tasks: {
+          order: 'asc'
+        }
+      }
+    })
   }
 
 

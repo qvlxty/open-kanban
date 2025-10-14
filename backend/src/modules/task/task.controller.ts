@@ -49,20 +49,17 @@ export class TaskController {
   @Patch('/order')
   async update(@Body() data: UpdateOrderDto) {
     await this.taskService.updateOrder(data);
-    return 'Задача обновлена';
   }
 
   @Patch('/:id')
   async order(@Param('id', ParseIntPipe) id: number, @Body() data: UpdateTaskDto) {
     await this.taskService.update(id, data);
-    return 'Задача обновлена';
   }
 
 
   @Delete('/:id')
   async delete(@Param('id', ParseIntPipe) id: number) {
     await this.taskService.delete(id);
-    return 'Запись удалена';
   }
 
 }

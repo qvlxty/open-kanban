@@ -4,7 +4,7 @@ import { useForm } from 'effector-forms'
 
 import DatePicker from 'react-datepicker'
 import { $users } from '@/features/users/model'
-import { Button, Dropdown, Icon, Input } from '@/shared/ui'
+import { Button, Dropdown, Icon, Input, MdEditor } from '@/shared/ui'
 
 import "react-datepicker/dist/react-datepicker.css";
 import { ru } from 'date-fns/locale'
@@ -41,7 +41,7 @@ export const TaskForm = () => {
 
     return (
         <Container onSubmit={handleSubmit}>
-            <label>ФИО Респондента</label>
+            <label>Название задачи</label>
             <Input
                 ref={inputRef}
                 value={fields.title.value}
@@ -49,9 +49,14 @@ export const TaskForm = () => {
                 hasError={fields.title.hasError()}
                 errorText={fields.title.errorText()}
             />
-            <label>Рекрутёр </label>
+            <label>Описание задачи</label>
+            <MdEditor
+                value={fields.description.value}
+                onChange={fields.description.set}
+            />
+            <label>Ответственные </label>
             <Dropdown
-                placeholder='Ответственный'
+                placeholder='Ответственные'
                 options={users}
                 selected={fields.userId.value}
                 onOptionChange={fields.userId.onChange}

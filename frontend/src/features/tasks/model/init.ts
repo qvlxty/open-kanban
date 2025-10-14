@@ -37,7 +37,6 @@ sample({
         id,
         title,
         description,
-        userId,
         dueDate: dueDate?.toISOString() || null,
     }),
     filter: Boolean,

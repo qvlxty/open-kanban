@@ -27,7 +27,7 @@ export const Kanban = () => {
                     {...columnData}
                 />
             ))}
-            <Button onClick={() => createStage()}>
+            <Button style={{ borderRadius: '100%', height: '56px', width: '56px'}} onClick={() => createStage()}>
                 <Icon icon='add' size={24} />
             </Button>
         </Container>
@@ -38,5 +38,6 @@ const Container = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    gap: 4px;
+    align-items: flex-start;
+    gap: 12px;
 `
