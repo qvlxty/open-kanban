@@ -16,7 +16,6 @@ import { $isApploaded, loadApp } from './app/model'
 import { NotificationProvider } from './shared/ui/notifications'
 import { TaskEditModal } from './features/tasks/view'
 import { StageEditModal } from './features/stages/view'
-import { Layout } from './app/view'
 
 export const App = () => {
     const isAppLoaded = useUnit($isApploaded)
@@ -33,9 +32,7 @@ export const App = () => {
                     <NotificationProvider />
                     {/* @ts-ignore */}
                     <GlobalStyled />
-                    <Layout>
                         <AppRouter />
-                    </Layout>
                     <TaskEditModal />
                     <StageEditModal />
                 </>

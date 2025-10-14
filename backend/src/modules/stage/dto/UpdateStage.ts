@@ -1,6 +1,6 @@
 import { IsBoolean, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class UpdateVacancyDto {
+export class UpdateStageDto {
     @IsString()
     @IsNotEmpty()
     title: string;

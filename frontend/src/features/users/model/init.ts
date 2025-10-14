@@ -1,14 +1,13 @@
 import { sample } from "effector";
-import { deleteUser, fetchUsers, userForm } from "./private";
-import { createUserFx, deleteUserFx, fetchUsersFx } from "@/dal";
+import { deleteUser, fetchUsers, fetchUsersFx, userForm } from "./private";
+import { createUserFx, deleteUserFx, fetchUsersReqFx } from "@/dal";
 import { $users } from "./public";
 import { showNotification } from "@/shared/ui/notifications";
-import { loadApp } from "@/app/model";
 
-$users.on(fetchUsersFx.doneData, (_, s) => s)
+$users.on(fetchUsersReqFx.doneData, (_, s) => s)
 
 sample({
-    clock: [fetchUsers, loadApp, deleteUserFx.done],
+    clock: [fetchUsers, deleteUserFx.done],
     target: fetchUsersFx
 })
 

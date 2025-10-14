@@ -43,7 +43,7 @@ export class TaskService {
     return this.taskRepo.createQueryBuilder('r')
       .where('r.userId = ? and r.interviewDate > CURRENT_DATE',[userId])
       .orderBy({ interviewDate: 'ASC' })
-      .leftJoinAndSelect('r.vacancy', 'v')
+      .leftJoinAndSelect('r.stage', 'v')
       .getResult()
   }
 }

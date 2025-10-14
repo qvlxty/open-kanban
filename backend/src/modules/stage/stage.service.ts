@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { UpdateVacancyDto } from './dto/updateVacancy.dto';
-import { CreateVacancyDto } from './dto/vacancy.dto';
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { EntityRepository } from '@mikro-orm/postgresql';
+import { EntityRepository, raw } from '@mikro-orm/postgresql';
 import { Task } from '../task/task.entity';
 import { Stage } from './stage.entity';
+import { CreateStageDto } from './dto/CreateStage.dto';
+import { UpdateStageDto } from './dto/UpdateStage';
 
 @Injectable()
 export class StageService {
@@ -15,7 +15,7 @@ export class StageService {
     private taskRepo: EntityRepository<Task>,
   ) { }
 
-  create(v: CreateVacancyDto) {
+  create(v: CreateStageDto) {
     this.stageRepo.insert(v);
   }
 
@@ -23,38 +23,38 @@ export class StageService {
     return this.stageRepo.findOne({ id });
   }
 
-  async update(id: number, data: UpdateVacancyDto) {
+  async update(id: number, data: UpdateStageDto) {
     await this.stageRepo.nativeUpdate({ id }, data);
   }
   async delete(id: number) {
     await this.stageRepo.nativeDelete({ id });
   }
 
-  // getVacanciesWithRespondents() {
-  //   const baseSelectedRows = [
-  //     'u.id', 'u.fio', 'u.login',
-  //     'r.id', 'r.title', 'r.status', 'r.interviewDate', 'r.resumeUrl'
-  //   ]
-  //   return Promise.all(
-  //     [
-  //       this.vacancyRepository
-  //         .createQueryBuilder('v')
-  //         .leftJoinAndSelect('v.respondents', 'r')
-  //         .orderBy('v.id')
-  //         .addOrderBy('r.order')
-  //         .leftJoin('r.user', 'u')
-  //         .select([...baseSelectedRows, 'v.id', 'v.title', 'v.stack', 'v.isOpen'])
-  //         .getMany(),
-  //       this.respondentRepo
-  //         .createQueryBuilder('r')
-  //         .where('r.vacancy_id is null')
-  //         .addOrderBy('r.order')
-  //         .leftJoin('r.user', 'u')
-  //         .select(baseSelectedRows)
-  //         .getMany()
-  //     ]
-  //   )
-  // }
+  getKanban() {
+    const baseSelectedRows = [
+      'u.id', 'u.name', 'u.login',
+      't.id', 't.title', 't.dueDate',
+    ]
+    return Promise.all(
+      [
+        this.stageRepo
+          .createQueryBuilder('v')
+          .leftJoinAndSelect('v.tasks', 't')
+          .orderBy({ id: 'asc' })
+          .orderBy({ tasks: { order: 'asc' }})
+          .leftJoin('t.user', 'u')
+          .select([...baseSelectedRows, 'v.id', 'v.title'])
+          .getResult(),
+        this.taskRepo
+          .createQueryBuilder('t')
+          .where({ stage: null })
+          .orderBy({ order: 'asc' })
+          .leftJoin('t.user', 'u')
+          .select(baseSelectedRows)
+          .getResult()
+      ]
+    )
+  }
 
 
 }

@@ -25,8 +25,8 @@ export class UserService {
   }
 
   public list() {
-    return this.userRepo.createQueryBuilder('u')
-      .select(['login','name',])
-      .getResult()
+    return this.userRepo.findAll({
+      fields: ['id','login','name']
+    })
   }
 }

@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { RouterGuard } from './RouterGuard'
 import { basicRoutes, privateRoutes } from './config'
+import { Layout } from '@/app/view'
 
 const routesRender = (route: {path: string, component: React.ComponentType }, isPrivate: boolean) => {
       return (
@@ -20,8 +21,10 @@ const routesRender = (route: {path: string, component: React.ComponentType }, is
 export const AppRouter = () => (
   <Router>
     <Routes>
-      {basicRoutes.map((c) => routesRender(c, false))}
-      {privateRoutes.map((c) => routesRender(c, true))}
+      <Route element={<Layout />}>
+        {basicRoutes.map((c) => routesRender(c, false))}
+        {privateRoutes.map((c) => routesRender(c, true))}
+      </Route>
     </Routes>
   </Router>
 )

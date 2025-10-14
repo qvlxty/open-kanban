@@ -24,7 +24,7 @@ export const createStageReqFx = attachWrapper({
     mapResult: () => ({})
 })
 
-export type UpdateVacancyPayload = {
+export type UpdateStagesPayload = {
     id: number,
     title: string,
     description: string,
@@ -32,7 +32,7 @@ export type UpdateVacancyPayload = {
 
 export const updateStageReqFx = attachWrapper({
     effect: authRequestFx,
-    mapParams: (body: UpdateVacancyPayload) => ({
+    mapParams: (body: UpdateStagesPayload) => ({
         body,
         url: `/stage/${body.id}`,
         method: 'patch',
@@ -43,7 +43,7 @@ export const updateStageReqFx = attachWrapper({
 export const deleteStageReqFx = attachWrapper({
     effect: authRequestFx,
     mapParams: (id: string | number) => ({
-        url: `/vacancy/${id}`,
+        url: `/stages/${id}`,
         method: 'delete',
     }),
     mapResult: () => ({})
@@ -52,7 +52,7 @@ export const deleteStageReqFx = attachWrapper({
 export const fetchSingleStageReqFx = attachWrapper({
     effect: authRequestFx,
     mapParams: (id: string | number) => ({
-        url: `/vacancy/${id}`,
+        url: `/stages/${id}`,
         method: 'get',
     }),
     mapResult: ({ result }) => result.data as StageDto,

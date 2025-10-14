@@ -1,9 +1,12 @@
+import { fetchUsersReqFx } from "@/dal";
 import { d } from "./domain";
 import { requiredValidator } from '@/shared/lib/validator'
+import { attach } from "effector";
 import { createForm } from 'effector-forms'
 
 
 export const fetchUsers = d.event()
+export const fetchUsersFx = attach({ effect: fetchUsersReqFx })
 export const deleteUser = d.event<string | number>()
 
 

@@ -1,14 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavPanel } from './NavPanel'
+import { Outlet } from 'react-router'
 
 
-export const Layout = ({ children }: React.PropsWithChildren) => {
+export const Layout = () => {
     return (
         <Container>
             <NavPanel />
             <ContentWrapper>
-                {children}
+                <Outlet />
             </ContentWrapper>
         </Container>
     )

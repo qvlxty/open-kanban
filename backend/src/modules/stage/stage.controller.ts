@@ -9,34 +9,35 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { CreateVacancyDto } from './dto/vacancy.dto';
 import { StageService } from './stage.service';
 import { JwtAuthGuard } from 'src/auth/auth.gurad';
+import { CreateStageDto } from './dto/CreateStage.dto';
+import { UpdateStageDto } from './dto/UpdateStage';
 
-@Controller('/stage')
+@Controller('/stages')
 @UseGuards(JwtAuthGuard)
 export class StageController {
   constructor(private readonly stageService: StageService) { }
 
   @Post()
-  create(@Body() data: CreateVacancyDto) {
+  create(@Body() data: CreateStageDto) {
     return this.stageService.create(data);
   }
 
   @Get()
-  async getFullVacancies() {
-    // return this.stageService.getVacanciesWithRespondents()
+  async getKanban() {
+    return this.stageService.getKanban()
   }
 
   @Get('/:id')
-  getVacancy(@Param('id', ParseIntPipe) id: number) {
+  get(@Param('id', ParseIntPipe) id: number) {
     return this.stageService.getOne(id);
   }
 
   @Patch('/:id')
   async update(
     @Param('id', ParseIntPipe) id: number,
-    @Body() data: CreateVacancyDto
+    @Body() data: UpdateStageDto
   ) {
     await this.stageService.update(id, data);
   }

@@ -3,7 +3,7 @@ import { AxiosError } from "axios";
 import { authRequestFx } from "./request";
 import { UserDto } from "./types";
 
-export const fetchUsersFx = attachWrapper({
+export const fetchUsersReqFx = attachWrapper({
     effect: authRequestFx,
     mapParams: () => ({
         method: 'get',
