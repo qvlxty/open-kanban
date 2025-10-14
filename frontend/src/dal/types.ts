@@ -18,7 +18,7 @@ export type TaskDto = {
 }
 
 
-export type KanbanColumn = {
+export type KanbanColumnDto = {
     id: number,
     title: string,
     tasks: TaskDto[]

@@ -3,11 +3,13 @@ import { useForm } from 'effector-forms'
 
 import React from 'react'
 import { Button, Input } from '@/shared/ui'
-import { deleteProject, projectForm } from '../../model/private'
+import { $loading, deleteProject, projectForm } from '../../model/private'
+import { useUnit } from 'effector-react'
 
 
 export const UpdateProjectForm = () => {
     const { submit, fields } = useForm(projectForm)
+    const loading = useUnit($loading)
 
     const handleSubmit = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -22,21 +24,33 @@ export const UpdateProjectForm = () => {
 
     return (
         <Container onSubmit={handleSubmit}>
+            <label>Название проекта</label>
             <Input
                 value={fields.title.value}
                 onChange={fields.title.set}
                 hasError={fields.title.hasError()}
                 errorText={fields.title.errorText()}
+                autoFocus
             />
-            <Button type='submit'>
-                Сохранить
-            </Button>
-            <Button danger onClick={() => deleteHandler()}>
-                Удалить
-            </Button>
+            <ButtonsCaption>
+                <Button disabled={loading} type='submit'>
+                    Сохранить
+                </Button>
+                <Button disabled={loading} danger onClick={() => deleteHandler()}>
+                    Удалить
+                </Button>
+            </ButtonsCaption>
         </Container>
     )
 }
+
+const ButtonsCaption = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    flex: 1;
+    justify-content: space-between;
+`
 
 const Container = styled.form`
     display: flex;

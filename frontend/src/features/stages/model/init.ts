@@ -1,14 +1,8 @@
 import { sample } from "effector"
-import { $modalVisible, $stageId, closeModal, createStageFx, deleteStage, deleteStageFx, resetState, stageForm, updateStageFx } from "./private"
+import { createStageFx, deleteStage, deleteStageFx, stageForm, updateStageFx } from "./private"
 import { createStage, onCreateStageDone, onStageEditDone, openStageEdit, fetchSingleStageFx, onDeleteStageDone } from "./public"
+import { KanbanGate } from "@/features/kanban/model"
 
-$stageId
-    .on(openStageEdit, (_, s) => s)
-    .reset(resetState)
-
-$modalVisible
-    .on(openStageEdit, () => true)
-    .reset([closeModal, updateStageFx.done])
 
 sample({
     clock: openStageEdit,
@@ -22,13 +16,11 @@ sample({
 
 sample({
     clock: stageForm.formValidated,
-    source: $stageId,
-    fn: (id, { title, description }) => ({
-        id,
+    fn: ({ id, title, description }) => ({
+        id: id!,
         title,
         description,
     }),
-    filter: Boolean,
     target: updateStageFx,
 })
 
@@ -40,6 +32,7 @@ sample({
 
 sample({
     clock: createStage,
+    source: KanbanGate.state,
     target: createStageFx
 })
 
@@ -50,7 +43,7 @@ sample({
 
 sample({
     clock: deleteStage,
-    source: $stageId,
+    source: stageForm.fields.id.$value,
     filter: Boolean,
     target: deleteStageFx
 })

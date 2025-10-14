@@ -2,9 +2,9 @@ import React from 'react'
 import { Loader, Modal } from '@/shared/ui'
 import { useUnit } from 'effector-react'
 
-import { $modalVisible, closeModal } from '../../model/private'
 import { StageEditForm } from '../containers'
 import { fetchSingleStageFx } from '../../model'
+import { $modalVisible, stageForm } from '../../model/private'
 
 export const StageEditModal = () => {
     const loading = useUnit(fetchSingleStageFx.pending)
@@ -16,7 +16,7 @@ export const StageEditModal = () => {
     return (
         <Modal
             visible={modalVisible}
-            onClose={() => closeModal()}
+            onClose={() => stageForm.reset()}
         >
             <StageEditForm />
         </Modal>

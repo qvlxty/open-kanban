@@ -14,10 +14,11 @@ type Props = {
     errorText?: string
     onClick?: () => void
     disabled?: boolean
+    autoFocus?: boolean
 }
 
 export const Input = React.forwardRef<HTMLInputElement, Props>((
-    { onClick, placeholder, type, onChange, value, max, min, onBlur, hasError, errorText, disabled = false }
+    { onClick, placeholder, type, onChange, value, max, min, onBlur, hasError, errorText, disabled = false, autoFocus }
     , ref) => {
     return (
         <>
@@ -33,6 +34,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((
                 hasError={hasError}
                 disabled={disabled}
                 onBlur={onBlur}
+                autoFocus={autoFocus}
             />
             <ErrorText>
                 {errorText}

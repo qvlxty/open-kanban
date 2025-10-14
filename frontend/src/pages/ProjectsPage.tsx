@@ -1,10 +1,11 @@
 import styled from 'styled-components'
-import { ProjectList } from '@/features/projects/view'
+import { CreateProject, ProjectList } from '@/features/projects/view'
 
 
 export const ProjectsPage = () => {
     return (
         <Container>
+            <CreateProject />
             <ProjectList />
         </Container>
     )
@@ -17,5 +18,5 @@ const Container = styled.div`
     margin: auto;
     width: 100%;
     max-width: 800px;
-    margin-top: 24px;
+    gap: 8px;
 `

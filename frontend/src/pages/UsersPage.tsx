@@ -33,6 +33,5 @@ const Container = styled.div`
     margin: auto;
     width: 100%;
     max-width: 800px;
-    margin-top: 24px;
     gap: 24px;
 `

@@ -13,8 +13,12 @@ export class TaskService {
     @InjectRepository(Task)
     private taskRepo: EntityRepository<Task>,
   ) { }
-  create(v: CreateTaskDto) {
-    this.taskRepo.insert(v);
+  create({ stageId, ...v }: CreateTaskDto, userId: number) {
+    this.taskRepo.insert({
+      ...v,
+      stage: stageId,
+      user: userId
+    });
   }
 
   read() {

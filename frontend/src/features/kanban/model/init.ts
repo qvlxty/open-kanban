@@ -2,7 +2,6 @@ import { sample } from "effector";
 import {
     $kanbanColumns,
     fetchKanbanFx,
-    KanbanGate,
     setTaskStage,
     setTaskStageFx,
     sortCard,
@@ -11,9 +10,10 @@ import {
 import { getSortCardColumn } from "./helpers";
 import { onCreateStageDone, onDeleteStageDone, onStageEditDone } from "@/features/stages/model";
 import { onCreateTaskDone, onDeleteTaskDone, onEditTaskDone } from "@/features/tasks/model";
+import { KanbanGate } from "./public";
 
 $kanbanColumns
-    .on(fetchKanbanFx.doneData, (_, [columns]) => columns)
+    .on(fetchKanbanFx.doneData, (_, c) => c)
 
 sample({
     clock: sortCard,
@@ -21,8 +21,6 @@ sample({
     fn: getSortCardColumn,
     target: sortCardFx,
 })
-
-
 
 sample({
     clock: [
@@ -36,6 +34,7 @@ sample({
         onEditTaskDone,
         onDeleteTaskDone,
     ],
+    source: KanbanGate.state,
     target: fetchKanbanFx
 })
 

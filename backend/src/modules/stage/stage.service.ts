@@ -11,12 +11,13 @@ export class StageService {
   constructor(
     @InjectRepository(Stage)
     private stageRepo: EntityRepository<Stage>,
-    @InjectRepository(Task)
-    private taskRepo: EntityRepository<Task>,
   ) { }
 
-  create(v: CreateStageDto) {
-    this.stageRepo.insert(v);
+  create({ projectId, ...v }: CreateStageDto) {
+    this.stageRepo.insert({
+      ...v,
+      project: projectId
+    });
   }
 
   getOne(id: number) {
@@ -30,30 +31,16 @@ export class StageService {
     await this.stageRepo.nativeDelete({ id });
   }
 
-  getKanban() {
-    const baseSelectedRows = [
-      'u.id', 'u.name', 'u.login',
-      't.id', 't.title', 't.dueDate',
-    ]
-    return Promise.all(
-      [
-        this.stageRepo
-          .createQueryBuilder('v')
-          .leftJoinAndSelect('v.tasks', 't')
-          .orderBy({ id: 'asc' })
-          .orderBy({ tasks: { order: 'asc' }})
-          .leftJoin('t.user', 'u')
-          .select([...baseSelectedRows, 'v.id', 'v.title'])
-          .getResult(),
-        this.taskRepo
-          .createQueryBuilder('t')
-          .where({ stage: null })
-          .orderBy({ order: 'asc' })
-          .leftJoin('t.user', 'u')
-          .select(baseSelectedRows)
-          .getResult()
-      ]
-    )
+  getKanban(projectId: number) {
+    return this.stageRepo
+      .createQueryBuilder('v')
+      .leftJoinAndSelect('v.tasks', 't')
+      .leftJoinAndSelect('t.user', 'u')
+      .orderBy({ id: 'asc' })
+      .orderBy({ tasks: { order: 'asc' } })
+      .select(['id','title'])
+      .where({ project: projectId })
+      .getResult()
   }
 
 

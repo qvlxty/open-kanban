@@ -2,14 +2,8 @@ import { attach } from "effector";
 import { d } from "./domain";
 import { createStageReqFx, deleteStageReqFx, fetchSingleStageReqFx, updateStageReqFx } from "@/dal";
 import { createForm } from "effector-forms";
-import { requiredStringValidator } from "@/shared/lib/validator";
+import { requiredNumberValidator, requiredStringValidator } from "@/shared/lib/validator";
 
-
-export const $stageId = d.store<number | null>(null)
-export const resetState = d.event()
-
-export const $modalVisible = d.store(false)
-export const closeModal = d.event()
 
 export const createStageFx = attach({ effect: createStageReqFx })
 export const updateStageFx = attach({ effect: updateStageReqFx })
@@ -19,6 +13,10 @@ export const deleteStage = d.event()
 
 export const stageForm = createForm({
     fields: {
+        id: {
+            init: null as number | null,
+            rules: [requiredNumberValidator]
+        },
         title: {
             init: "",
             rules: [requiredStringValidator],
@@ -30,3 +28,4 @@ export const stageForm = createForm({
     },
     validateOn: ["submit"],
 })
+export const $modalVisible = stageForm.fields.id.$value.map((b) => b !== null)

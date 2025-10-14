@@ -10,12 +10,13 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/CreateTask.dto';
 import { UpdateOrderDto } from './dto/UpdateOrder.dto';
 import { UpdateTaskDto } from './dto/UpdateTask.dto';
 import { JwtAuthGuard } from 'src/auth/auth.gurad';
+import { CurrentUser } from 'src/auth/decorators/user.decorator';
+import { User } from '../user/user.entity';
 
 @Controller('/tasks')
 @UseGuards(JwtAuthGuard)
@@ -23,9 +24,11 @@ export class TaskController {
   constructor(private readonly taskService: TaskService) { }
 
   @Post('/')
-  create(@Body() data: CreateTaskDto) {
-    this.taskService.create(data);
-    return 'Задача создана.';
+  create(
+    @Body() data: CreateTaskDto,
+    @CurrentUser() user: User
+  ) {
+    return this.taskService.create(data, user.id);
   }
 
   @Get('/timetable')

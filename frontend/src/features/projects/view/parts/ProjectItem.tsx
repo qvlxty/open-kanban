@@ -3,7 +3,9 @@ import styled, { css } from 'styled-components'
 
 import { themeVar } from '@/shared/ui/theming'
 import { Button } from '@/shared/ui'
-import { deleteProject } from '../../model/private'
+import { deleteProject, openUpdateProject } from '../../model/private'
+import { Link } from 'react-router'
+import { Routes } from '@/routes/config'
 
 type Props = {
     id: number,
@@ -12,48 +14,37 @@ type Props = {
 
 export const ProjectItem: React.FC<Props> = (
     { id, title }
-) => {
-
-    const handleDelete = React.useCallback((id: number) => {
-        if (confirm('Вы действительно хотите удалить проект?')) {
-            deleteProject(id)
-        }
-    }, [])
-
-    return (
-        <TableRowsWrapper key={id}>
-            <ColWrapper width={'32px'} center style={{ marginLeft: '16px' }} >
-                {id}
-            </ColWrapper>
-            <ColWrapper style={{ maxWidth: '700px', justifyContent: 'flex-start', flex: 1, textAlign: 'left' }} >
-                <LoginWrapper>
-                    {title}
-                </LoginWrapper>
-            </ColWrapper>
-            <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: 16 }}>
-                <Button onClick={() => handleDelete(id)}>
-                    Редактировать
-                </Button>
-            </ColWrapper>
-            <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: 16 }}>
-                <Button onClick={() => handleDelete(id)}>
-                    Удалить
-                </Button>
-            </ColWrapper>
-        </TableRowsWrapper>
-    )
-}
+) => (
+    <TableRowsWrapper to={`${Routes.kanban}/${id}`} key={id}>
+        <ColWrapper width={'32px'} center style={{ marginLeft: '12px' }} >
+            {id}
+        </ColWrapper>
+        <ColWrapper style={{ maxWidth: '700px', justifyContent: 'flex-start', flex: 1, textAlign: 'left' }} >
+            <LoginWrapper>
+                {title}
+            </LoginWrapper>
+        </ColWrapper>
+        <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: '12px'}}>
+            <Button onClick={(e) => {
+                e.preventDefault()
+                openUpdateProject({id, title})
+            }}>
+                Редактировать
+            </Button>
+        </ColWrapper>
+    </TableRowsWrapper>
+)
 
 
 const LoginWrapper = styled.div`
     margin-left: 12px;
     text-align: left;
     justify-content: start;
-    font-size: 13px;
+    font-size: 18px;
     font-weight: 500;
 `
 
-const TableRowsWrapper = styled.div`
+const TableRowsWrapper = styled(Link)`
     text-decoration: none;
     color: ${themeVar('fontColor')};
     height: 50px;

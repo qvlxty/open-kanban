@@ -23,5 +23,6 @@ const Container = styled.div`
 
 const ContentWrapper = styled.div`
     display: flex;
-    margin-left: 64px;
+    margin-left: 80px;
+    padding-top: 24px;
 `

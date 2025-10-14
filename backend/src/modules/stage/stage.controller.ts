@@ -24,9 +24,11 @@ export class StageController {
     return this.stageService.create(data);
   }
 
-  @Get()
-  async getKanban() {
-    return this.stageService.getKanban()
+  @Get('/:projectId')
+  async getKanban(
+    @Param('projectId', ParseIntPipe) projectId: number
+  ) {
+    return this.stageService.getKanban(projectId)
   }
 
   @Get('/:id')

@@ -2,6 +2,7 @@ import { useGate, useList, useUnit } from "effector-react"
 import { $projects, ProjectsGate } from "../../model/private"
 import styled from "styled-components"
 import { ProjectItem } from "../parts"
+import { UpdateProjectModal } from "./UpdateProjectModal"
 
 export const ProjectList = () => {
     useGate(ProjectsGate)
@@ -13,6 +14,7 @@ export const ProjectList = () => {
 
     return (
         <Container>
+            <UpdateProjectModal />
             {projects}
         </Container>
     )

@@ -1,24 +1,25 @@
 import { attachWrapper } from "@42px/effector-extra";
-import { KanbanColumn, StageDto, TaskDto } from "./types";
+import { KanbanColumnDto, StageDto } from "./types";
 import { authRequestFx } from "./request";
 
 export const fetchKanbanReqFx = attachWrapper({
     effect: authRequestFx,
-    mapParams: () => ({
+    mapParams: (projectId: number) => ({
         method: 'get',
-        url: '/stages',
+        url: `/stages/${projectId}`,
     }),
-    mapResult: ({ result }) => result.data as [KanbanColumn[], TaskDto[]]
+    mapResult: ({ result }) => result.data as KanbanColumnDto[]
 })
 
 export const createStageReqFx = attachWrapper({
     effect: authRequestFx,
-    mapParams: () => ({
+    mapParams: (projectId: number) => ({
         body: {
             title: 'Новая колонка',
             description: 'Описание колонки',
+            projectId
         },
-        url: '/stage',
+        url: '/stages',
         method: 'post',
     }),
     mapResult: () => ({})

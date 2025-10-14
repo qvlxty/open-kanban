@@ -18,7 +18,7 @@ type Props = {
 }
 
 export const StageColumn = ({ title, tasks, id }: Props) => {
-    const [expanded, setExpanded] = React.useState(false)
+    const [expanded, setExpanded] = React.useState(true)
 
     const [{ isOver }, drop] = useDrop<{ id: number }, any, { isOver: boolean }>(() => ({
         accept: TASK_ITEM,
@@ -72,12 +72,6 @@ export const StageColumn = ({ title, tasks, id }: Props) => {
     )
 }
 
-const BadgesWrapper = styled.div`
-    display :flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-`
-
 type ContainerProps = {
     isOver: boolean,
     expanded?: boolean
@@ -100,15 +94,16 @@ const Container = styled.div<ContainerProps>`
 `
 
 const HeaderWrapper = styled.div`
-    background-color:${themeVar('default600')};
+    background-color:${themeVar('default700')};
     padding: 16px;
-    font-size: 18px;
+    font-size: 16px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     gap: 8px;
     font-weight: 600;
-    height: 64px;
+    height: 32px;
+    border-radius: 8px;
     & > * {
         white-space: nowrap;
         overflow: hidden;

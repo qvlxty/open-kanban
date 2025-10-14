@@ -22,12 +22,6 @@ export const NavPanel = () => {
                         size={24}
                     />
                 </IconWrapper>
-                <IconWrapper to={'#'} onClick={() => createTask()}>
-                    <Icon
-                        icon={'add'}
-                        size={24}
-                    />
-                </IconWrapper>
                 <IconWrapper to={'/users'}>
                     <Icon
                         icon={'users'}

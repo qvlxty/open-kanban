@@ -82,12 +82,12 @@ export const Button = styled.button<ButtonProps & ThemedStyledProps>`
     ${ButtonCss}
 `
 
-export const RouterLinkButton = styled(Link) <ButtonProps & ThemedStyledProps>`
+export const RouterLinkButton = styled(Link)<ButtonProps & ThemedStyledProps>`
     ${ButtonCss}
     text-decoration: none;
 `
 
-export const LinkButton = styled.a <ButtonProps & ThemedStyledProps>`
+export const LinkButton = styled.a<ButtonProps & ThemedStyledProps>`
     ${ButtonCss}
     text-decoration: none;
 `

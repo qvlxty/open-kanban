@@ -17,22 +17,25 @@ export const CreateForm = () => {
 
     return (
         <Container onSubmit={handleSubmit}>
+            <label>Логин</label>
             <Input
-                placeholder={'Логин'}
+                placeholder={'user'}
                 value={login.value}
                 onChange={login.set}
                 hasError={login.hasError()}
                 errorText={login.errorText()}
             />
+            <label>Имя</label>
             <Input
-                placeholder={'Имя'}
+                placeholder={''}
                 value={name.value}
                 onChange={name.set}
                 hasError={name.hasError()}
                 errorText={name.errorText()}
             />
+            <label>Пароль</label>
             <Input
-                placeholder={'Пароль'}
+                placeholder={'qwerty'}
                 value={password.value}
                 onChange={password.set}
                 hasError={password.hasError()}

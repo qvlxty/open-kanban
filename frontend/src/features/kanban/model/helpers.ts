@@ -1,6 +1,6 @@
-import { KanbanColumn } from "@/dal/types"
+import { KanbanColumnDto } from "@/dal/types"
 
-export const getSortCardColumn = (columns: KanbanColumn[], {
+export const getSortCardColumn = (columns: KanbanColumnDto[], {
     id, index
 }: { id: number, index: number }
 ) => {
