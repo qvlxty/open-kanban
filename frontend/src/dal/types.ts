@@ -29,3 +29,8 @@ export type UserDto = {
     login: string,
     name: string,
 }
+
+export type ProjectDto = {
+    id: number,
+    title: string,
+}

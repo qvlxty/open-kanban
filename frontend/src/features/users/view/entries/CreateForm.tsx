@@ -7,7 +7,7 @@ import { userForm } from '../../model/private'
 
 export const CreateForm = () => {
     const login = useField(userForm.fields.login)
-    const fio = useField(userForm.fields.fio)
+    const name = useField(userForm.fields.name)
     const password = useField(userForm.fields.password)
 
     const handleSubmit = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -25,11 +25,11 @@ export const CreateForm = () => {
                 errorText={login.errorText()}
             />
             <Input
-                placeholder={'ФИО'}
-                value={fio.value}
-                onChange={fio.set}
-                hasError={fio.hasError()}
-                errorText={fio.errorText()}
+                placeholder={'Имя'}
+                value={name.value}
+                onChange={name.set}
+                hasError={name.hasError()}
+                errorText={name.errorText()}
             />
             <Input
                 placeholder={'Пароль'}
@@ -37,6 +37,7 @@ export const CreateForm = () => {
                 onChange={password.set}
                 hasError={password.hasError()}
                 errorText={password.errorText()}
+                type='password'
             />
             <Button type='submit'>
                 Создать

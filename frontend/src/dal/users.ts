@@ -16,21 +16,21 @@ export const fetchUsersReqFx = attachWrapper({
 type RegisterPayload = {
     login: string
     password: string
-    fio: string
+    name: string
 }
 
-export const createUserFx = attachWrapper({
+export const createUserReqFx = attachWrapper({
     effect: authRequestFx,
     mapParams: (body: RegisterPayload) => ({
         body,
-        url: '/user/register',
+        url: '/user',
         method: 'post',
     }),
     mapResult: () => ({}),
     mapError: ({ error }: { error: AxiosError<any> }) => error?.response?.data?.message as string[]
 })
 
-export const deleteUserFx = attachWrapper({
+export const deleteUserReqFx = attachWrapper({
     effect: authRequestFx,
     mapParams: (userId: string | number) => ({
         userId,

@@ -1,8 +1,8 @@
-import { Controller, Get, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/auth.gurad';
 import { ProjectService } from './project.service';
 
-@Controller('project')
+@Controller('projects')
 @UseGuards(JwtAuthGuard)
 export class ProjectController {
 
@@ -11,17 +11,24 @@ export class ProjectController {
     ) {}
 
     @Get()
-    projectList() {
-
+    list() {
+        return this.projectService.list()
     }
 
     @Post()
-    createProject() {
-
+    create(@Body() body: {title: string}) {
+        return this.projectService.create(body.title)
     }
 
-    @Post()
-    deleteProject() {
-
+    @Delete('/:id')
+    delete(@Param('id',ParseIntPipe) id: number) {
+        return this.projectService.delete(id)
+    }
+    @Patch('/:id')
+    update(
+        @Param('id',ParseIntPipe) id: number,
+        @Body() body: { title:string }
+    ) {
+        return this.projectService.update(id, body.title)
     }
 }

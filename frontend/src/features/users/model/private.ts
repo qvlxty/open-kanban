@@ -1,6 +1,6 @@
-import { fetchUsersReqFx } from "@/dal";
+import { createUserReqFx, deleteUserReqFx, fetchUsersReqFx } from "@/dal";
 import { d } from "./domain";
-import { requiredValidator } from '@/shared/lib/validator'
+import { requiredStringValidator } from '@/shared/lib/validator'
 import { attach } from "effector";
 import { createForm } from 'effector-forms'
 
@@ -9,20 +9,23 @@ export const fetchUsers = d.event()
 export const fetchUsersFx = attach({ effect: fetchUsersReqFx })
 export const deleteUser = d.event<string | number>()
 
+export const createUserFx = attach({ effect: createUserReqFx })
+export const deleteUserFx = attach({ effect: deleteUserReqFx })
+
 
 export const userForm = createForm({
     fields: {
-        fio: {
+        name: {
             init: '',
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         },
         login: {
             init: "",
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         },
         password: {
             init: '',
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         }
     },
     validateOn: ["submit"],

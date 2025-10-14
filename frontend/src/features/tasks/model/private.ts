@@ -1,4 +1,4 @@
-import { requiredValidator } from '@/shared/lib/validator'
+import { requiredStringValidator } from '@/shared/lib/validator'
 import { createForm } from 'effector-forms'
 import { d } from "./domain";
 import { attach } from 'effector';
@@ -20,7 +20,7 @@ export const taskForm = createForm({
     fields: {
         title: {
             init: "",
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         },
         description: {
             init: "",

@@ -16,7 +16,7 @@ export const NavPanel = () => {
     return (
         <Container>
             <Wrapper>
-                <IconWrapper to={'/kanban'}>
+                <IconWrapper to={'/projects'}>
                     <Icon
                         icon={'kanban'}
                         size={24}
@@ -60,12 +60,15 @@ export const NavPanel = () => {
 }
 
 const Container = styled.div`
-    width: 64px;
-    border-right: 1px solid ${themeVar('default700')};
+    margin: 16px;
+    margin-left: 12px;
+    width: 56px;
+    border: 1px solid ${themeVar('default700')};
     position: fixed;
     left: 0;
     top: 0;
-    height: 100vh;
+    border-radius: 20px;
+    height: calc(100vh - 32px);
     background: ${themeVar('secondary700')};
     background-size: cover;
     z-index: 11;

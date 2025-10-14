@@ -3,12 +3,12 @@ import styled, { css } from 'styled-components'
 import { themeVar } from '../theming'
 
 type Props = {
+    onChange: (text: string) => void,
     type?: string,
     placeholder?: string
     value: any,
     max?: number
     min?: number
-    onChange: (text: any) => void,
     onBlur?: () => void,
     hasError?: boolean
     errorText?: string
@@ -16,18 +16,20 @@ type Props = {
     disabled?: boolean
 }
 
-export const Input = React.forwardRef<HTMLInputElement, Props>(({ onClick, placeholder, type, onChange, value, max, min, onBlur, hasError, errorText, disabled = false }, ref) => {
+export const Input = React.forwardRef<HTMLInputElement, Props>((
+    { onClick, placeholder, type, onChange, value, max, min, onBlur, hasError, errorText, disabled = false }
+    , ref) => {
     return (
         <>
             <InputWrapper
-                onClick={onClick}
+                onChange={(e) => onChange(e.target.value)}
                 ref={ref}
+                onClick={onClick}
                 placeholder={placeholder}
                 type={type}
                 value={value}
                 max={max}
                 min={min}
-                onChange={(e) => onChange(e.target.value)}
                 hasError={hasError}
                 disabled={disabled}
                 onBlur={onBlur}

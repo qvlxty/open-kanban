@@ -2,7 +2,7 @@ import { attach } from "effector";
 import { d } from "./domain";
 import { createStageReqFx, deleteStageReqFx, fetchSingleStageReqFx, updateStageReqFx } from "@/dal";
 import { createForm } from "effector-forms";
-import { requiredValidator } from "@/shared/lib/validator";
+import { requiredStringValidator } from "@/shared/lib/validator";
 
 
 export const $stageId = d.store<number | null>(null)
@@ -21,11 +21,11 @@ export const stageForm = createForm({
     fields: {
         title: {
             init: "",
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         },
         description: {
             init: "",
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         },
     },
     validateOn: ["submit"],

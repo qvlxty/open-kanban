@@ -1,5 +1,5 @@
 import { createForm } from "effector-forms";
-import { requiredValidator } from "@/shared/lib/validator";
+import { requiredStringValidator } from "@/shared/lib/validator";
 import { attach } from "effector";
 import { loginReqFx } from "@/dal";
 
@@ -9,11 +9,11 @@ export const loginForm = createForm({
     fields: {
         login: {
             init: "",
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         },
         password: {
             init: "", 
-            rules: [requiredValidator],
+            rules: [requiredStringValidator],
         },
     },
     validateOn: ["submit"],
