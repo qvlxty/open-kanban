@@ -54,5 +54,4 @@ const Container = styled.form`
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 12px;
 `

@@ -2,39 +2,27 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import { themeVar } from '../theming'
 
-type Props = {
-    onChange: (text: string) => void,
-    type?: string,
-    placeholder?: string
-    value: any,
-    max?: number
-    min?: number
-    onBlur?: () => void,
-    hasError?: boolean
-    errorText?: string
-    onClick?: () => void
-    disabled?: boolean
-    autoFocus?: boolean
+type Props = Omit<React.InputHTMLAttributes<HTMLInputElement>,'onChange'> & {
+    onChange?: (text: string) => void,
+    errorText?: string,
+    hasError?: boolean,
 }
 
 export const Input = React.forwardRef<HTMLInputElement, Props>((
-    { onClick, placeholder, type, onChange, value, max, min, onBlur, hasError, errorText, disabled = false, autoFocus }
+    { 
+        onChange, 
+        errorText, 
+        hasError, 
+        ...props
+     }
     , ref) => {
     return (
         <>
             <InputWrapper
-                onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => onChange?.(e.target.value)}
                 ref={ref}
-                onClick={onClick}
-                placeholder={placeholder}
-                type={type}
-                value={value}
-                max={max}
-                min={min}
                 hasError={hasError}
-                disabled={disabled}
-                onBlur={onBlur}
-                autoFocus={autoFocus}
+                {...props}
             />
             <ErrorText>
                 {errorText}
@@ -48,20 +36,24 @@ type InputWrapperProps = {
 }
 
 const InputWrapper = styled.input<InputWrapperProps>`
-  flex-direction: row;
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 4px;
-  background: ${themeVar('contentBg')};
-  border: 1px solid ${themeVar('default800')};
-  color: ${themeVar('fontColor')};
-  &:focus {
+    flex-direction: row;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 4px;
+    background: ${themeVar('contentBg')};
+    border: 1px solid ${themeVar('default800')};
+    color: ${themeVar('fontColor')};
+    &:focus {
         outline: none;
         border: 1px solid ${themeVar('default600')};
     }
     ${({ hasError }) => hasError && css`
         border-color: ${themeVar('error')};
     `}
+    &::placeholder {
+        color: ${themeVar('default500')};
+        font-weight: 300;
+    }
 `
 
 const ErrorText = styled.div`

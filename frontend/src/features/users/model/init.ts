@@ -1,7 +1,6 @@
 import { sample } from "effector";
-import { createUserFx, deleteUser, deleteUserFx, fetchUsers, fetchUsersFx, userForm } from "./private";
-import { $users } from "./public";
-import { showNotification } from "@/shared/ui/notifications";
+import { createUserFx, deleteUser, deleteUserFx, fetchUsers, userForm } from "./private";
+import { $users, fetchUsersFx } from "./public";
 
 $users.on(fetchUsersFx.doneData, (_, s) => s)
 
@@ -21,19 +20,6 @@ sample({
     target: userForm.reset,
 })
 
-sample({
-    clock: createUserFx.fail,
-    fn: () => ({
-        message: 'Произошла ошибка'
-    }),
-    target: showNotification
-})
-
-sample({
-    clock: createUserFx.failData,
-    fn: (m) => ({ message: m.join('\n') }),
-    target: showNotification
-})
 
 sample({
     clock: deleteUser,

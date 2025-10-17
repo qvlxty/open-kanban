@@ -5,7 +5,7 @@ import { UserDto } from "./types";
 
 export const fetchUsersReqFx = attachWrapper({
     effect: authRequestFx,
-    mapParams: () => ({
+    mapParams: (_: void) => ({
         method: 'get',
         url: '/user',
     }),

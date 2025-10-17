@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { themeVar } from '@/shared/ui/theming'
-import { Button } from '@/shared/ui'
+import { Button, Icon } from '@/shared/ui'
 import { openUpdateProject } from '../../model/private'
 import { Link } from 'react-router'
 import { Routes } from '@/routes/config'
@@ -21,12 +21,13 @@ export const ProjectItem: React.FC<Props> = (
                 {title}
             </LoginWrapper>
         </ColWrapper>
-        <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: '12px'}}>
-            <Button onClick={(e) => {
-                e.preventDefault()
-                openUpdateProject({id, title})
-            }}>
-                Редактировать
+        <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: '12px' }}>
+            <Button
+                onClick={(e) => {
+                    e.preventDefault()
+                    openUpdateProject({ id, title })
+                }}>
+                <Icon icon='edit' />
             </Button>
         </ColWrapper>
     </TableRowsWrapper>

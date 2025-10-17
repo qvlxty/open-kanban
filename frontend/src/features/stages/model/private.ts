@@ -1,4 +1,4 @@
-import { attach } from "effector";
+import { attach, combine } from "effector";
 import { d } from "./domain";
 import { createStageReqFx, deleteStageReqFx, updateStageReqFx } from "@/dal";
 import { createForm } from "effector-forms";
@@ -28,4 +28,6 @@ export const stageForm = createForm({
     },
     validateOn: ["submit"],
 })
+
+export const $loading = combine(updateStageFx.pending,deleteStageFx.pending,(a,b) => a || b)
 export const $modalVisible = stageForm.fields.id.$value.map((b) => b !== null)

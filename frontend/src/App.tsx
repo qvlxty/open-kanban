@@ -11,7 +11,6 @@ import { DndProvider } from 'react-dnd'
 import { ThemeProvider } from './shared/ui/theming'
 import { Loader } from './shared/ui'
 import { $isApploaded, loadApp } from './app/model'
-import { NotificationProvider } from './shared/ui/notifications'
 
 export const App = () => {
     const isAppLoaded = useUnit($isApploaded)
@@ -25,7 +24,6 @@ export const App = () => {
         <DndProvider backend={HTML5Backend}>
             <ThemeProvider>
                 <>
-                    <NotificationProvider />
                     {/* @ts-ignore */}
                     <GlobalStyled />
                     <AppRouter />

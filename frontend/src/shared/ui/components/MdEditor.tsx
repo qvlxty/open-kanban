@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import ReactMarkdown from 'react-markdown'
 import { TextArea } from './TextArea'
 import { themeVar } from '../theming'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 type Props = {
     value: string,
@@ -35,10 +37,29 @@ export const MdEditor = ({
                 ) :
                     (
                         <DescriptionWrapper onClick={() => setShowTextBox(true)}>
-                            {(value === '' || value === null) && 
+                            {(value === '' || value === null) &&
                                 (<PlaceholderText>Редактировать описание</PlaceholderText>)
                             }
-                            <ReactMarkdown>
+                            <ReactMarkdown
+                                components={{
+                                    code(props) {
+                                        const { children, className, node, ...rest } = props
+                                        const match = /language-(\w+)/.exec(className || '')
+                                        return match ? (
+                                            <SyntaxHighlighter
+                                                {...rest}
+                                                PreTag="div"
+                                                children={String(children).replace(/\n$/, '')}
+                                                language={match[1]}
+                                                style={xonokai}
+                                            />
+                                        ) : (
+                                            <code {...rest} className={className}>
+                                                {children}
+                                            </code>
+                                        )
+                                    }
+                                }}>
                                 {value}
                             </ReactMarkdown>
                         </DescriptionWrapper>

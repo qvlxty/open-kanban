@@ -6,10 +6,6 @@ export class CreateStageDto {
   @IsNotEmpty()
   title: string;
 
-  @IsString()
-  @IsNotEmpty()
-  description: string;
-
   @IsBoolean()
   @IsOptional()
   isOpen?: boolean;

@@ -91,7 +91,7 @@ const DropDownHeader = styled.div`
     font-weight: 400;
     color: ${themeVar('default300')};   
     box-sizing: border-box;
-    max-height: 48px;
+    max-height: 40px;
     background: ${themeVar('contentBg')};
     cursor: pointer;
     user-select: none;
@@ -130,8 +130,6 @@ const DropDownList = styled.ul`
 
     box-shadow: 0px 12px 24px 2px #11111111;
     box-sizing: border-box;
-    color: ${themeVar('blue500')};;
-    font-size: 15px;
 
     max-height: 80vh;
     overflow-y: auto;

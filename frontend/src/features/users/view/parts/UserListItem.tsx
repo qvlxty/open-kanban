@@ -3,7 +3,8 @@ import styled, { css } from 'styled-components'
 
 import { deleteUser } from '../../model/private'
 import { themeVar } from '@/shared/ui/theming'
-import { Button } from '@/shared/ui'
+import { AvatarThumb, Button } from '@/shared/ui'
+import { stringToColor } from '@/shared/lib/gen-color-string'
 
 type Props = {
     id: number,
@@ -23,6 +24,11 @@ export const UserListItem: React.FC<Props> = (
 
     return (
         <TableRowsWrapper key={id}>
+            <ColWrapper style={{ maxWidth: '50px', justifyContent: 'flex-start', flex: 0, textAlign: 'left' }} >
+                <LoginWrapper>
+                    <AvatarThumb nickname={login} />
+                </LoginWrapper>
+            </ColWrapper>
             <ColWrapper style={{ maxWidth: '700px', justifyContent: 'flex-start', flex: 1, textAlign: 'left' }} >
                 <LoginWrapper>
                     {login}
@@ -34,7 +40,7 @@ export const UserListItem: React.FC<Props> = (
                 </LoginWrapper>
             </ColWrapper>
             <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: 16 }}>
-                <Button onClick={() => handleDelete(id)}>
+                <Button danger onClick={() => handleDelete(id)}>
                     Удалить
                 </Button>
             </ColWrapper>

@@ -22,12 +22,14 @@ export const StageEditForm = () => {
 
     return (
         <Container onSubmit={handleSubmit}>
+            <label>Название колонки</label>
             <Input
                 value={fields.title.value}
                 onChange={fields.title.set}
                 hasError={fields.title.hasError()}
                 errorText={fields.title.errorText()}
             />
+            <label>Описание</label>
             <MdEditor
                 value={fields.description.value}
                 onChange={fields.description.set}

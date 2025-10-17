@@ -27,12 +27,22 @@ export const Kanban = () => {
                     {...columnData}
                 />
             ))}
-            <Button style={{ borderRadius: '100%', height: '56px', width: '56px'}} onClick={() => createStage()}>
-                <Icon icon='add' size={24} />
-            </Button>
+            <AddWrapper>
+                <Button style={{ borderRadius: '100%', height: '56px', width: '56px' }} onClick={() => createStage()}>
+                    <Icon icon='add' size={24} />
+                </Button>
+            </AddWrapper>
         </Container>
     )
 }
+
+const AddWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 66px;
+`
 
 const Container = styled.div`
     display: flex;

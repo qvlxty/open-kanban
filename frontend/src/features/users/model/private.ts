@@ -6,7 +6,6 @@ import { createForm } from 'effector-forms'
 
 
 export const fetchUsers = d.event()
-export const fetchUsersFx = attach({ effect: fetchUsersReqFx })
 export const deleteUser = d.event<string | number>()
 
 export const createUserFx = attach({ effect: createUserReqFx })

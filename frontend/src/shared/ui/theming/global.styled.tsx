@@ -92,7 +92,7 @@ export const GlobalStyled = createGlobalStyle<ThemedStyledProps>`
     } 
 
     code {
-    font-family: 'Roboto';
+        font-family: 'Roboto';
     }
 
     .copied {

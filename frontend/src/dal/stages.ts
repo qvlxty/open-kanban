@@ -16,7 +16,7 @@ export const createStageReqFx = attachWrapper({
     mapParams: (projectId: number) => ({
         body: {
             title: 'Новая колонка',
-            description: 'Описание колонки',
+            description: '',
             projectId
         },
         url: '/stages',

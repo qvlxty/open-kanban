@@ -52,16 +52,11 @@ export const NavPanel = () => {
 }
 
 const Container = styled.div`
-    margin: 16px;
-    margin-left: 12px;
-    width: 56px;
-    border: 1px solid ${themeVar('default700')};
+    width: 60px;
     position: fixed;
-    left: 0;
-    top: 0;
-    border-radius: 20px;
-    height: calc(100vh - 32px);
-    background: ${themeVar('secondary700')};
+    height: 100vh;
+    border-right: 1px solid ${themeVar('default700')};
+    background: ${themeVar('default800')};
     background-size: cover;
     z-index: 11;
   
@@ -82,19 +77,21 @@ const Wrapper = styled.div`
 const IconWrapper = styled(Link)`
     display: flex;
     align-items: center;
+    border: 1px solid #00000000;
     justify-content: center;
 
-    border-radius: 8px;
+    border-radius: 50%;
     padding: 8px;
     cursor: pointer;
     & * {
         color: ${themeVar('default500')};
     }
     &:hover {
-        background-color: ${themeVar('default600')};
+        background-color: ${themeVar('default800')};
+        border: 1px solid ${themeVar('default700')};
         svg {
-            fill: ${themeVar('secondary700')};
-            stroke: ${themeVar('secondary700')};
+            fill: ${themeVar('default600')};
+            stroke: ${themeVar('default600')};
         }
     }
 `

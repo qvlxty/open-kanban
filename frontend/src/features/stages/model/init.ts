@@ -26,7 +26,7 @@ sample({
 
 sample({
     clock: updateStageFx.done,
-    target: onStageEditDone
+    target: [onStageEditDone, stageForm.reset ]
 })
 
 

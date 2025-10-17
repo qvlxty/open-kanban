@@ -19,7 +19,7 @@ export const TextArea = ({ placeholder, onChange, value, width, onBlur, autoFocu
                 onChange={(e) => onChange(e.target.value)}
                 onBlur={onBlur}
                 autoFocus={autoFocus}
-                rows={10}
+                rows={20}
                 style={{
                     width
                 }}
@@ -34,7 +34,7 @@ const InputWrapper = styled.textarea<ThemedStyledProps>`
   padding: 10px;
   border-radius: 4px;
   background: ${themeVar('backgroundColor')};
-  border: 1px solid ${themeVar('default600')};
+  border: 1px solid ${themeVar('default500')};
   color: ${themeVar('fontColor')};
   width: 100%;
 

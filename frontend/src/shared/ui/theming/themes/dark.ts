@@ -20,10 +20,5 @@ export const darkTheme = {
   default300: '#b5b5d0',
 
 
-  blue500: '#1E90FF',
-  green500: '#6FCF97',
-
-  secondary700: '#1d1d24',
-
   error: '#F53333',
 }

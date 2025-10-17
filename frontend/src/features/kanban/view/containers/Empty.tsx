@@ -1,5 +1,5 @@
 import { createStage } from "@/features/stages/model"
-import { Button } from "@/shared/ui"
+import { Button, Icon } from "@/shared/ui"
 import styled from "styled-components"
 
 export const Empty = () => {
@@ -7,8 +7,10 @@ export const Empty = () => {
         <Container>
             <h1>Канбан проекта пуст</h1>
             <Button 
+                haveIcon
                 onClick={() => createStage()}
             >
+                <Icon icon='add' />
                 Создать первую колонку
             </Button>
         </Container>

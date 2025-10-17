@@ -30,7 +30,7 @@ const ButtonCss = css<ButtonProps & ThemedStyledProps>`
     padding: 8px 16px;
     border-radius: 6px;
     border: 1px dashed ${themeVar('default500')};
-    background: ${themeVar('secondary700')};
+    background: ${themeVar('default800')};
     color: ${themeVar('default400')};
     display: flex;
     align-items: center;
@@ -42,7 +42,7 @@ const ButtonCss = css<ButtonProps & ThemedStyledProps>`
         }
     `}
     &:hover {
-        color: ${themeVar('secondary700')};
+        color: ${themeVar('default800')};
         background: ${themeVar('default500')};
         transition: 0.2s;
     }

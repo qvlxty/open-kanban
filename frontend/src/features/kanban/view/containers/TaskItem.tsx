@@ -8,7 +8,7 @@ import { themeVar } from '@/shared/ui/theming'
 
 import { TASK_ITEM } from '../../model/const'
 import { sortCard } from '../../model/private'
-import { toNormalDateFull } from '@/shared/lib/dates'
+import { toNormalDateCalendar } from '@/shared/lib/dates'
 import { openTaskEdit } from '@/features/tasks/model'
 
 
@@ -60,7 +60,7 @@ export const TaskItem = ({ name, id, index, user, dueDate }: Props) => {
             </Header>
             {dueDate && (
                 <DateBadge>
-                    <Icon icon={'calendar'} />{toNormalDateFull(dueDate)}
+                    <Icon icon={'calendar'} />{toNormalDateCalendar(dueDate)}
                 </DateBadge>
             )}
         </Container>
@@ -74,10 +74,6 @@ const DateBadge = styled.div`
     svg {
         margin-right: 5px;
     }
-    padding: 8px;
-    border-radius: 8px;
-    background-color: ${themeVar('default700')};
-    border: 1px solid ${themeVar('default600')};
     
 `
 

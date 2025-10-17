@@ -56,7 +56,7 @@ sample({
 
 sample({
     clock: updateTaskFx.done,
-    target: onEditTaskDone,
+    target: [onEditTaskDone, taskForm.reset],
 })
 
 sample({

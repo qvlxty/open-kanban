@@ -3,12 +3,11 @@ import styled from 'styled-components'
 import { useForm } from 'effector-forms'
 
 import { $users } from '@/features/users/model'
-import { Button, Dropdown, Icon, Input, MdEditor } from '@/shared/ui'
+import { Button, DatePicker, Dropdown, Icon, Input, MdEditor } from '@/shared/ui'
 
 import { useStoreMap } from 'effector-react'
 import { taskForm } from '../../model/private'
 import { deleteTask } from '../../model'
-
 
 
 export const TaskForm = () => {
@@ -56,10 +55,14 @@ export const TaskForm = () => {
                 </EditorWrapper>
                 <SpecCol>
                      <label>Дедлайн</label>
-                       
-                    <label>Добавить ответственных </label>
+                     <DatePicker
+                        placeholder='DD/MM/YYYY' 
+                        value={fields.dueDate.value}
+                        onChange={fields.dueDate.set}
+                     />
+                    <label>Добавить исполнителей </label>
                     <Dropdown
-                        placeholder='Ответственные'
+                        placeholder='Исполнители'
                         options={users}
                         selected={fields.userId.value}
                         onOptionChange={fields.userId.onChange}
@@ -68,6 +71,10 @@ export const TaskForm = () => {
             </Row>
             <Separator />
             <ActionButtons>
+                <Button type='reset' haveIcon onClick={() => submit()}>
+                    <Icon icon={'save'} />
+                    Сохранить
+                </Button>
                 <Button type='reset' haveIcon danger onClick={() => deleteHandler()}>
                     <Icon icon={'delete'} />
                     Удалить
@@ -87,9 +94,10 @@ const Container = styled.form`
 
 const ActionButtons = styled.div`
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     gap: 24px;
     align-items: flex-end;
+    justify-content: space-between;
 `
 
 const Row = styled.div`

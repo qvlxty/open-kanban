@@ -52,7 +52,7 @@ export const StageColumn = ({ title, tasks, id }: Props) => {
                     <Title>{expanded ? title : '...'}</Title>
                 </TitleWrapper>
                 {expanded && (
-                    <Button secondary onClick={() => createTask(id === -1 ? undefined : id)}>
+                    <Button secondary onClick={() => createTask(id)}>
                         <Icon icon={'add'} />
                     </Button>
                 )}

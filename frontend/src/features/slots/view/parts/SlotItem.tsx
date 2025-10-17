@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { themeVar } from '@/shared/ui/theming'
-import { toNormalDateFull } from '@/shared/lib/dates'
+import { toNormalDateCalendar } from '@/shared/lib/dates'
 
 type Props = {
     id: number,
@@ -30,7 +30,7 @@ export const SlotItem: React.FC<Props> = (
             </ColWrapper>
             <ColWrapper style={{ width: '200px', }} >
                 <LoginWrapper>
-                    {toNormalDateFull(date)}
+                    {toNormalDateCalendar(date)}
                 </LoginWrapper>
             </ColWrapper>
             <ColWrapper style={{ justifyContent: 'flex-end', paddingRight: 16 }}>

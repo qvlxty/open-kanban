@@ -10,4 +10,3 @@ import './features/users/init'
 import './features/slots/init'
 
 import '@/shared/ui/theming/init'
-import '@/shared/ui/notifications/init'

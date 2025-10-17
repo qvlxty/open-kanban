@@ -35,10 +35,9 @@ export const Modal: React.FC<Props> = ({ visible, onClose, children, loading = f
 }
 
 const Container = styled.div`
-    border: 1px solid ${themeVar('default600')};
     background-color: ${themeVar('backgroundColor')};
     width: 85vw;
-    padding: 16px;
+    padding: 30px;
     min-width: 320px;
     max-width: ${TABLET_WIDTH}px;
     max-height: 100vh;
