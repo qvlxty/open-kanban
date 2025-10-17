@@ -23,9 +23,6 @@ export const UserListItem: React.FC<Props> = (
 
     return (
         <TableRowsWrapper key={id}>
-            <ColWrapper width={'32px'} center style={{ marginLeft: '16px' }} >
-                {id}
-            </ColWrapper>
             <ColWrapper style={{ maxWidth: '700px', justifyContent: 'flex-start', flex: 1, textAlign: 'left' }} >
                 <LoginWrapper>
                     {login}
@@ -64,7 +61,7 @@ const TableRowsWrapper = styled.div`
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    border-radius: 16px;
+    border-radius: 4px;
 
     &:nth-child(even) {
         background-color: ${themeVar('backgroundColor')};

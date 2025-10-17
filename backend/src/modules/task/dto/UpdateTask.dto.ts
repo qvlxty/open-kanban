@@ -1,6 +1,8 @@
 import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateTaskDto {
+    id?: number;
+
     @IsString()
     @IsOptional()
     title?: string;

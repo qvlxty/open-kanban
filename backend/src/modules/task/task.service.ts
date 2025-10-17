@@ -29,10 +29,13 @@ export class TaskService {
     return this.taskRepo.findOneOrFail({ id });
   }
 
-  async update(id: number, {stageId, ...data}: UpdateTaskDto) {
+  async update(id: number, {stageId, id: _,  ...data}: UpdateTaskDto) {
+    const stageUpdate = stageId 
+      ? { stageId } 
+      : {}
     await this.taskRepo.nativeUpdate({ id }, {
       ...data,
-      stage: stageId ? stageId : undefined
+      ...stageUpdate
     });
   }
 

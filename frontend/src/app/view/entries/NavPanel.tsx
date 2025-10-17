@@ -1,11 +1,9 @@
-import React from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { $isUserAuthorized, logout } from '@/features/login/model'
 import { Icon } from '@/shared/ui'
 import { useUnit } from 'effector-react'
 import { themeVar, toggleTheme } from '@/shared/ui/theming'
-import { createTask } from '@/features/tasks/model'
 
 
 export const NavPanel = () => {

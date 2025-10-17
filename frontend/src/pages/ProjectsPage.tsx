@@ -5,6 +5,7 @@ import { CreateProject, ProjectList } from '@/features/projects/view'
 export const ProjectsPage = () => {
     return (
         <Container>
+            <h1>Проекты</h1>
             <CreateProject />
             <ProjectList />
         </Container>
@@ -18,5 +19,5 @@ const Container = styled.div`
     margin: auto;
     width: 100%;
     max-width: 800px;
-    gap: 8px;
+    gap: 16px;
 `

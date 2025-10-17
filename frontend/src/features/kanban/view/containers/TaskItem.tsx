@@ -2,7 +2,7 @@ import React from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import styled, { css } from 'styled-components'
 
-import { Button, Icon } from '@/shared/ui'
+import { Icon } from '@/shared/ui'
 import { themeVar } from '@/shared/ui/theming'
 
 
@@ -47,24 +47,20 @@ export const TaskItem = ({ name, id, index, user, dueDate }: Props) => {
     return (
         <Container
             ref={ref}
+            onClick={() => openTaskEdit(id)}
             isDragged={collected.isDragging}
         >
             <Header>
                 <TitleWrapper>
+                    {user && (
+                        <><Icon icon={'users'} />{user?.name}</>
+                    )}
                     {name}
                 </TitleWrapper>
-                <Button onClick={() => openTaskEdit(id)}>
-                    <Icon icon={'edit'} />
-                </Button>
             </Header>
             {dueDate && (
                 <DateBadge>
                     <Icon icon={'calendar'} />{toNormalDateFull(dueDate)}
-                </DateBadge>
-            )}
-            {user && (
-                <DateBadge>
-                    <Icon icon={'users'} />{user?.name}
                 </DateBadge>
             )}
         </Container>
@@ -94,19 +90,25 @@ const Container = styled.div<ContainerProps>`
     flex-direction: column;
     gap: 8px;
     padding: 16px;
-    border: 1px solid ${themeVar('default600')};
+    border-left: 4px solid ${themeVar('default600')};
     background-color: ${themeVar('contentBg')};
-    margin-left: 8px;
-    margin-right: 8px;
+    margin-left: 4px;
+    margin-right: 4px;
     ${({ isDragged = true }) => isDragged && css`
         opacity: 0.7;
     `}
+    &:hover {
+        opacity: 0.8;
+    }
     cursor: grab;
 `
 
 const TitleWrapper = styled.div`
     flex: 1;
-    font-size: 18px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 `
 
 const Header = styled.div`

@@ -12,7 +12,7 @@ export const UsersPage = () => {
                 onSet={setCurPage}
                 selected={curPage}
                 options={[
-                    { value: 'list', text: 'Список юзеров' },
+                    { value: 'list', text: 'Список пользователей' },
                     { value: 'create', text: 'Добавить' },
                 ]}
             />

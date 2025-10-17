@@ -19,7 +19,6 @@ export const UserList = () => {
     }, [])
     return (
         <Container>
-            <h1>Список юзеров</h1>
             {users}
         </Container>
     )

@@ -6,7 +6,7 @@ export const fetchKanbanReqFx = attachWrapper({
     effect: authRequestFx,
     mapParams: (projectId: number) => ({
         method: 'get',
-        url: `/stages/${projectId}`,
+        url: `/stages/kanban/${projectId}`,
     }),
     mapResult: ({ result }) => result.data as KanbanColumnDto[]
 })
@@ -35,7 +35,7 @@ export const updateStageReqFx = attachWrapper({
     effect: authRequestFx,
     mapParams: (body: UpdateStagesPayload) => ({
         body,
-        url: `/stage/${body.id}`,
+        url: `/stages/${body.id}`,
         method: 'patch',
     }),
     mapResult: () => ({})

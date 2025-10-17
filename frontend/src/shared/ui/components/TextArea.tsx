@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import { ThemedStyledProps, themeVar } from '../theming'
 
@@ -33,7 +32,7 @@ const InputWrapper = styled.textarea<ThemedStyledProps>`
   font-size: 16px;
   font-family: 'roboto';
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   background: ${themeVar('backgroundColor')};
   border: 1px solid ${themeVar('default600')};
   color: ${themeVar('fontColor')};

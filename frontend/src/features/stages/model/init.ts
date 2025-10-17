@@ -49,6 +49,12 @@ sample({
 })
 
 sample({
+    clock: deleteStageFx,
+    fn: () => null,
+    target: stageForm.fields.id.onChange
+})
+
+sample({
     clock: deleteStageFx.done,
     target: onDeleteStageDone
 })

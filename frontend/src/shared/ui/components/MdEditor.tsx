@@ -35,7 +35,12 @@ export const MdEditor = ({
                 ) :
                     (
                         <DescriptionWrapper onClick={() => setShowTextBox(true)}>
-                            <ReactMarkdown>{value === '' ? 'Нажмите для редактирования' : value}</ReactMarkdown>
+                            {(value === '' || value === null) && 
+                                (<PlaceholderText>Редактировать описание</PlaceholderText>)
+                            }
+                            <ReactMarkdown>
+                                {value}
+                            </ReactMarkdown>
                         </DescriptionWrapper>
                     )
             }
@@ -48,11 +53,14 @@ const DescriptionWrapper = styled.div`
     font-family: 'roboto';
     padding: 10px;
     background: ${themeVar('contentBg')};
-    border-radius: 8px;
+    border-radius: 4px;
     border: 1px solid ${themeVar('contentBg')};
-    color: ${themeVar('fontColor')};
     cursor: pointer;
     &:hover {
         border: 1px solid ${themeVar('default600')};
     }
+`
+
+const PlaceholderText = styled.span`
+    color: ${themeVar('default400')};
 `

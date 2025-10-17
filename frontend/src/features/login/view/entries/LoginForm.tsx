@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useField, useForm } from 'effector-forms'
+import { useForm } from 'effector-forms'
 
 import { Button, Input } from '@/shared/ui'
 import { loginForm } from '../../model/private'

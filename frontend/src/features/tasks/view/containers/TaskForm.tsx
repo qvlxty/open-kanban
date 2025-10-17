@@ -2,12 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { useForm } from 'effector-forms'
 
-import DatePicker from 'react-datepicker'
 import { $users } from '@/features/users/model'
 import { Button, Dropdown, Icon, Input, MdEditor } from '@/shared/ui'
 
-import "react-datepicker/dist/react-datepicker.css";
-import { ru } from 'date-fns/locale'
 import { useStoreMap } from 'effector-react'
 import { taskForm } from '../../model/private'
 import { deleteTask } from '../../model'
@@ -49,32 +46,29 @@ export const TaskForm = () => {
                 hasError={fields.title.hasError()}
                 errorText={fields.title.errorText()}
             />
-            <label>Описание задачи</label>
-            <MdEditor
-                value={fields.description.value}
-                onChange={fields.description.set}
-            />
-            <label>Ответственные </label>
-            <Dropdown
-                placeholder='Ответственные'
-                options={users}
-                selected={fields.userId.value}
-                onOptionChange={fields.userId.onChange}
-            />
-            <label>Дедлайн</label>
-            <DatePicker
-                selected={fields.dueDate.value}
-                onChange={fields.dueDate.set}
-                showTimeSelect
-                locale={ru}
-                timeFormat="HH:mm"
-                timeIntervals={30}
-                timeCaption="time"
-                dateFormat="d MMMM yyyy HH:mm"
-            />
-
+            <Row>
+                <EditorWrapper>
+                    <label>Описание</label>
+                    <MdEditor
+                        value={fields.description.value}
+                        onChange={fields.description.set}
+                    />
+                </EditorWrapper>
+                <SpecCol>
+                     <label>Дедлайн</label>
+                       
+                    <label>Добавить ответственных </label>
+                    <Dropdown
+                        placeholder='Ответственные'
+                        options={users}
+                        selected={fields.userId.value}
+                        onOptionChange={fields.userId.onChange}
+                    />
+                </SpecCol>
+            </Row>
+            <Separator />
             <ActionButtons>
-                <Button haveIcon danger onClick={() => deleteHandler()}>
+                <Button type='reset' haveIcon danger onClick={() => deleteHandler()}>
                     <Icon icon={'delete'} />
                     Удалить
                 </Button>
@@ -87,17 +81,37 @@ const Container = styled.form`
     display: flex;
     flex-direction: column;
     gap: 16px;
-    margin-top: 12px;
     box-sizing: border-box;
+    height: 100%;
 `
-
 
 const ActionButtons = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
     gap: 24px;
     align-items: flex-end;
-    & > button {
-        flex: 1;
-    }
+`
+
+const Row = styled.div`
+    flex-direction: row;
+    display: flex;
+    gap: 16px;
+`
+
+const EditorWrapper = styled.div`
+    flex: 1;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+`
+
+const SpecCol = styled.div`
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+`
+
+const Separator = styled.div`
+    flex: 1;
 `

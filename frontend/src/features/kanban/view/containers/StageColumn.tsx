@@ -42,20 +42,19 @@ export const StageColumn = ({ title, tasks, id }: Props) => {
             ref={(e) => { drop(e)}}
         >
             <HeaderWrapper>
-                <TitleWrapper onClick={() => setExpanded((t) => !t)}>
+                <TitleWrapper 
+                    onContextMenu={(e) => {
+                        e.preventDefault()
+                        setExpanded((t) => !t)
+                    }}
+                    onClick={() => openStageEdit(id)}
+                >
                     <Title>{expanded ? title : '...'}</Title>
                 </TitleWrapper>
                 {expanded && (
-                    <>
-                        {id !== -1 && (
-                            <Button primary onClick={() => openStageEdit(id)}>
-                                <Icon icon={'edit'} />
-                            </Button>
-                        )}
-                        <Button secondary onClick={() => createTask(id === -1 ? undefined : id)}>
-                            <Icon icon={'add'} />
-                        </Button>
-                    </>
+                    <Button secondary onClick={() => createTask(id === -1 ? undefined : id)}>
+                        <Icon icon={'add'} />
+                    </Button>
                 )}
             </HeaderWrapper>
             {expanded && tasks.map((t, index) => (
@@ -80,10 +79,11 @@ type ContainerProps = {
 const Container = styled.div<ContainerProps>`
     display: flex;
     flex-direction: column;
-    width: 360px;
+    width: 300px;
     gap: 8px;
     cursor: default;
     border: 1px solid rgba(0,0,0,0);
+    min-height: 100vh;
     ${({ isOver }) => isOver && css`
         border: 1px solid ${themeVar('accent500')};
     `}
@@ -94,15 +94,16 @@ const Container = styled.div<ContainerProps>`
 `
 
 const HeaderWrapper = styled.div`
-    background-color:${themeVar('default700')};
+    background-color:${themeVar('default800')};
+    border: 1px solid ${themeVar('default700')};
     padding: 16px;
-    font-size: 16px;
+    font-size: 14px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    justify-content: center;
     gap: 8px;
-    font-weight: 600;
-    height: 32px;
+    height: 64px;
     border-radius: 8px;
     & > * {
         white-space: nowrap;
@@ -114,24 +115,17 @@ const HeaderWrapper = styled.div`
 const TitleWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    height: 100%;
     gap: 10px;
     flex: 1;
 `
 
 const Title = styled.div`
-    font-size: 20px;
+    font-size: 18px;
+    font-weight: 300;
     &:hover {
-        color: ${themeVar('accent700')};
+        color: ${themeVar('default300')};
         cursor: pointer;
     }
-`
-
-const StackBadge = styled.div`
-    display: flex;
-    padding: 4px 8px;
-    border: 1px solid ${themeVar('default600')};
-    background-color: ${themeVar('default300')};
-    border-radius: 8px;
-    font-size: 16px;
-   
 `

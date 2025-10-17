@@ -1,9 +1,10 @@
-import { Button } from "@/shared/ui"
+import { Button, Icon } from "@/shared/ui"
 import { createProject } from "../../model/private"
 
 export const CreateProject = () => {
     return (
-        <Button onClick={() => createProject()}>
+        <Button haveIcon onClick={() => createProject()}>
+            <Icon icon='add' />
             Создать проект
         </Button>
     )

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useField } from 'effector-forms'
-import { Input, Button } from '@/shared/ui'
+import { Input, Button, Icon } from '@/shared/ui'
 
 import { userForm } from '../../model/private'
 
@@ -42,7 +42,8 @@ export const CreateForm = () => {
                 errorText={password.errorText()}
                 type='password'
             />
-            <Button type='submit'>
+            <Button haveIcon type='submit'>
+                <Icon icon='add' />
                 Создать
             </Button>
         </Container>

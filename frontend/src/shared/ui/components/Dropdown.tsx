@@ -85,12 +85,11 @@ const DropDownContainer = styled.div`
 `
 
 const DropDownHeader = styled.div`
-    border-radius: 8px;
-    border: 3px solid ${themeVar('default700')};
+    border-radius: 4px;
+    border: 1px solid ${themeVar('default800')};
     padding: 14px;
-    border-radius: 8px;
-    font-weight: 500;
-    color: #a3b7c7;   
+    font-weight: 400;
+    color: ${themeVar('default300')};   
     box-sizing: border-box;
     max-height: 48px;
     background: ${themeVar('contentBg')};
@@ -100,7 +99,7 @@ const DropDownHeader = styled.div`
     justify-content: space-between;
     align-items: center;
     &:hover {
-        border: 3px solid ${themeVar('default600')};
+        border: 1px solid ${themeVar('default600')};
     }
 `
 
@@ -113,7 +112,7 @@ const DropDownWrapper = styled.div`
 const DropDownListContainer = styled.div`
     position: absolute;
     height: 0;
-    border-radius: 8px;
+    border-radius: 4px;
     margin-top: 0px;
     width: 240px;
     right:0;
@@ -125,13 +124,13 @@ const DropDownList = styled.ul`
     margin-top: -4px;
     background: ${themeVar('contentBg')};
     
-    border: 3px solid ${themeVar('default700')};
-    border-radius: 8px;
+    border: 1px solid ${themeVar('default700')};
+    border-radius: 4px;
     color: ${themeVar('accent500')};
 
-    box-shadow: 0px 12px 24px 2px #11111133;
+    box-shadow: 0px 12px 24px 2px #11111111;
     box-sizing: border-box;
-    color: #3faffa;
+    color: ${themeVar('blue500')};;
     font-size: 15px;
 
     max-height: 80vh;
@@ -147,12 +146,12 @@ const ListItem = styled.li`
     padding-right: 8px;
     padding-bottom: 12px;
     padding-top: 12px;
-    color: #a3b7c7;
+    color: ${themeVar('default400')};
     animation: fadeout 0.5s;
     border-radius: 4px;
     user-select: none;
     &:hover {
-        color: ${themeVar('accent500')};
+        color: ${themeVar('default300')};
         cursor: pointer; 
     }
 `

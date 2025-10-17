@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components'
 
 import { themeVar } from '@/shared/ui/theming'
 import { Button } from '@/shared/ui'
-import { deleteProject, openUpdateProject } from '../../model/private'
+import { openUpdateProject } from '../../model/private'
 import { Link } from 'react-router'
 import { Routes } from '@/routes/config'
 
@@ -16,9 +16,6 @@ export const ProjectItem: React.FC<Props> = (
     { id, title }
 ) => (
     <TableRowsWrapper to={`${Routes.kanban}/${id}`} key={id}>
-        <ColWrapper width={'32px'} center style={{ marginLeft: '12px' }} >
-            {id}
-        </ColWrapper>
         <ColWrapper style={{ maxWidth: '700px', justifyContent: 'flex-start', flex: 1, textAlign: 'left' }} >
             <LoginWrapper>
                 {title}
@@ -54,7 +51,7 @@ const TableRowsWrapper = styled(Link)`
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    border-radius: 16px;
+    border-radius: 4px;
 
     &:nth-child(even) {
         background-color: ${themeVar('backgroundColor')};

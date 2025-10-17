@@ -1,4 +1,4 @@
-import { Loader, Modal, TabBar } from '@/shared/ui'
+import { Modal } from '@/shared/ui'
 import { useUnit } from 'effector-react'
 
 import { TaskForm } from '../containers'
@@ -8,12 +8,9 @@ export const TaskEditModal = () => {
     const loading = useUnit(fetchSingleTaskFx.pending)
     const modalVisible = useUnit($modalVisible)
 
-    if (loading) {
-        return <Loader />
-    }
     return (
         <Modal
-            size={'lg'}
+            loading={loading}
             visible={modalVisible}
             onClose={() => taskForm.submit()}
         >

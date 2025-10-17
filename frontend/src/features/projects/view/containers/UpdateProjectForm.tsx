@@ -32,6 +32,7 @@ export const UpdateProjectForm = () => {
                 errorText={fields.title.errorText()}
                 autoFocus
             />
+            <Separator />
             <ButtonsCaption>
                 <Button disabled={loading} type='submit'>
                     Сохранить
@@ -48,7 +49,6 @@ const ButtonsCaption = styled.div`
     display: flex;
     flex-direction: row;
     gap: 8px;
-    flex: 1;
     justify-content: space-between;
 `
 
@@ -56,4 +56,9 @@ const Container = styled.form`
     display: flex;
     flex-direction: column;
     gap: 12px;
+    height: 100%;
+`
+
+const Separator = styled.div`
+    flex: 1;
 `

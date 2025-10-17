@@ -1,20 +1,17 @@
-import React from 'react'
-
-import { BsKanban, BsKey, BsLamp, BsPlusCircle } from 'react-icons/bs'
-import { IoMdDocument, IoMdMegaphone, IoMdRemove } from 'react-icons/io'
-import { FiEdit2, FiUpload, FiList, FiUsers, FiLogOut } from 'react-icons/fi'
-import { AiOutlineCalendar } from 'react-icons/ai'
+import { BsKanban, BsLamp, BsPlusLg } from 'react-icons/bs'
+import { IoMdDocument } from 'react-icons/io'
+import { FiEdit2, FiList, FiUsers, FiLogOut, FiSave } from 'react-icons/fi'
+import { AiOutlineCalendar, AiOutlineMinus } from 'react-icons/ai'
 
 const Icons = {
   'kanban': BsKanban,
   'logout': FiLogOut,
-  'add': BsPlusCircle,
-  'delete': IoMdRemove,
+  'save': FiSave,
+  'add': BsPlusLg,
+  'delete': AiOutlineMinus,
   'edit': FiEdit2,
-  'upload': FiUpload,
   'list': FiList,
   'doc': IoMdDocument,
-  'feedback': IoMdMegaphone,
   'calendar': AiOutlineCalendar,
   'users': FiUsers,
   'lamp': BsLamp

@@ -1,6 +1,6 @@
 import { attach } from "effector";
 import { d } from "./domain";
-import { createStageReqFx, deleteStageReqFx, fetchSingleStageReqFx, updateStageReqFx } from "@/dal";
+import { createStageReqFx, deleteStageReqFx, updateStageReqFx } from "@/dal";
 import { createForm } from "effector-forms";
 import { requiredNumberValidator, requiredStringValidator } from "@/shared/lib/validator";
 

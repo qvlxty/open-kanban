@@ -1,6 +1,6 @@
-import { useUnit } from 'effector-react'
 import React from 'react'
 import styled from 'styled-components'
+import { useUnit } from 'effector-react'
 import { Icon } from '../components/Icon'
 import { themeVar } from '../theming'
 import { $notifications, popNotification } from './model/private'

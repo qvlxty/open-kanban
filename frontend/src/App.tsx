@@ -4,8 +4,6 @@ import { useUnit } from 'effector-react'
 
 import './init'
 
-import 'react-day-picker/dist/style.css'
-
 import { AppRouter } from './routes/Routes'
 import { GlobalStyled } from './shared/ui/theming/global.styled'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -14,8 +12,6 @@ import { ThemeProvider } from './shared/ui/theming'
 import { Loader } from './shared/ui'
 import { $isApploaded, loadApp } from './app/model'
 import { NotificationProvider } from './shared/ui/notifications'
-import { TaskEditModal } from './features/tasks/view'
-import { StageEditModal } from './features/stages/view'
 
 export const App = () => {
     const isAppLoaded = useUnit($isApploaded)
@@ -32,9 +28,7 @@ export const App = () => {
                     <NotificationProvider />
                     {/* @ts-ignore */}
                     <GlobalStyled />
-                        <AppRouter />
-                    <TaskEditModal />
-                    <StageEditModal />
+                    <AppRouter />
                 </>
             </ThemeProvider>
         </DndProvider>

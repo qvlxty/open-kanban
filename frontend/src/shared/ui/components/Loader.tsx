@@ -1,25 +1,9 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
+import { themeVar } from '../theming'
 
-
-export const Loader = () => {
-  return (
-    <LoaderWrapper>
-      <LoaderIcon />
-    </LoaderWrapper>
-  )
-}
-
-const LoaderWrapper = styled.div`
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  width: 100%;
-`
-
-const LoaderIcon = styled.div`
-  border: 4px solid red; 
-  border-top: 4px solid red; 
+export const Loader = styled.div`
+  border: 2px solid ${themeVar('default300')};
+  border-top: 2px solid ${themeVar('default700')}; 
   border-radius: 50%;
   width: 36px;
   height: 36px;

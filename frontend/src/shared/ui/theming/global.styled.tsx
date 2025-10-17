@@ -19,6 +19,7 @@ export const GlobalStyled = createGlobalStyle<ThemedStyledProps>`
     body,
     * {
         font-family: 'Roboto';
+        box-sizing: border-box;
     }
 
     a {
@@ -27,7 +28,7 @@ export const GlobalStyled = createGlobalStyle<ThemedStyledProps>`
     }
 
     label {
-        font-weight: 600;
+        font-weight: 300;
         font-size: 14px;
         margin-left: 4px;
     }
@@ -41,25 +42,25 @@ export const GlobalStyled = createGlobalStyle<ThemedStyledProps>`
     }
 
     @font-face {
-    font-family: Roboto mono;
-    src: url('/fonts/RobotoMono-Regular.ttf');
+        font-family: Roboto mono;
+        src: url('/fonts/RobotoMono-Regular.ttf');
     }
 
 
     @keyframes fadeout
     { 
-    from { opacity: 0;}
-    to { opacity: 1}
+        from { opacity: 0;}
+        to { opacity: 1}
     }
 
     @-webkit-keyframes fadeout 
     {
-    from { opacity: 0;}
-    to {opacity: 1;}
+        from { opacity: 0;}
+        to {opacity: 1;}
     }
 
     a {
-    color: ${themeVar('accent500')};
+        color: ${themeVar('accent500')};
     }
 
     h1,h2,h3 {
@@ -95,52 +96,15 @@ export const GlobalStyled = createGlobalStyle<ThemedStyledProps>`
     }
 
     .copied {
-    svg {
-        fill: white;
-    }
-    }
-
-    .wmde-markdown  {
-    font-family: 'Roboto';
-    background: none;
-    color: ${themeVar('fontColor')};
-    }
-    input {
-    flex-direction: row;
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 8px;
-    background: ${themeVar('contentBg')};
-    border: 1px solid ${themeVar('default600')};
-    color: ${themeVar('fontColor')};
-    &:focus {
-            outline: none;
-            box-shadow: 0px 0px 2px ${themeVar('green500')};
+        svg {
+            fill: white;
         }
     }
 
-    .react-datepicker__header {
-        background-color:${themeVar('default600')};
+    .wmde-markdown  {
+        font-family: 'Roboto';
+        background: none;
         color: ${themeVar('fontColor')};
-    }
-
-    .react-datepicker__day-name,
-    .react-datepicker__day,
-    .react-datepicker__current-month,
-    .react-datepicker-time__header {
-        color: ${themeVar('fontColor')};
-        padding: 4px;
-    }
-
-    
-    .react-datepicker__month-container,
-    .react-datepicker__time-list
-    {
-        color: ${themeVar('fontColor')};
-        background-color: ${themeVar('contentBg')};
-    }
-    .react-datepicker {
-        border: 1px solid ${themeVar('default600')};
     }
 
 `

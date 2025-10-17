@@ -24,7 +24,7 @@ export class StageController {
     return this.stageService.create(data);
   }
 
-  @Get('/:projectId')
+  @Get('kanban/:projectId')
   async getKanban(
     @Param('projectId', ParseIntPipe) projectId: number
   ) {

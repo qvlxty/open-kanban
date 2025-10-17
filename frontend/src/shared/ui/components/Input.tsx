@@ -51,13 +51,13 @@ const InputWrapper = styled.input<InputWrapperProps>`
   flex-direction: row;
   font-size: 16px;
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 4px;
   background: ${themeVar('contentBg')};
-  border: 1px solid ${themeVar('default600')};
+  border: 1px solid ${themeVar('default800')};
   color: ${themeVar('fontColor')};
   &:focus {
         outline: none;
-        box-shadow: 0px 0px 2px ${themeVar('green500')};
+        border: 1px solid ${themeVar('default600')};
     }
     ${({ hasError }) => hasError && css`
         border-color: ${themeVar('error')};

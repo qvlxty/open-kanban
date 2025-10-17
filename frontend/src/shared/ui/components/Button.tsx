@@ -28,7 +28,7 @@ type ButtonProps = {
 
 const ButtonCss = css<ButtonProps & ThemedStyledProps>`
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 6px;
     border: 1px dashed ${themeVar('default500')};
     background: ${themeVar('secondary700')};
     color: ${themeVar('default400')};

@@ -8,7 +8,7 @@ type Props<T> = {
     options: {
         value: T,
         icon?: IconName
-        text?: string,
+        text?: React.ReactNode,
     }[],
     selected: T,
     onSet: (v: T) => void
