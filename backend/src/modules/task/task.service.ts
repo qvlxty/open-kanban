@@ -29,15 +29,18 @@ export class TaskService {
   getOne(id: number) {
     return this.taskRepo.findOneOrFail({ id }, {
       populate: ['assigned', 'user'],
-      exclude: ['assigned.password','user.password']
+      exclude: ['assigned.password', 'user.password']
     });
   }
 
-  async update(id: number, {stageId, id: _,participants,  ...data}: UpdateTaskDto) {
+  async update(id: number, { stageId, id: _, participants, ...data }: UpdateTaskDto) {
     const updateObject = {
       ...data,
-      assigned: participants,
     } as EntityData<Task>
+    console.log({updateObject})
+    if (participants) {
+      updateObject.assigned = participants
+    }
     if (stageId) {
       updateObject.stage = stageId
     }
@@ -60,9 +63,14 @@ export class TaskService {
 
   public timetable(userId: number) {
     return this.taskRepo.createQueryBuilder('r')
-      .where('r.userId = ? and r.interviewDate > CURRENT_DATE',[userId])
-      .orderBy({ interviewDate: 'ASC' })
-      .leftJoinAndSelect('r.stage', 'v')
+      .orderBy({ dueDate: 'ASC' })
+      .leftJoinAndSelect('r.stage', 's')
+      .leftJoin('r.assigned', 'a')
+      .where({
+        assigned: userId,
+      })
+      .andWhere('r.due_date > CURRENT_DATE and r.due_date is not null')
+      .leftJoinAndSelect('s.project','p')
       .getResult()
   }
 }

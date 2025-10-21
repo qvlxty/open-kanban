@@ -3,35 +3,30 @@ import styled, { css } from 'styled-components'
 
 import { themeVar } from '@/shared/ui/theming'
 import { toNormalDateCalendar } from '@/shared/lib/dates'
+import { Link } from 'react-router'
+import { Routes } from '@/routes/config'
 
 type Props = {
     id: number,
     title: string,
     date: string,
     stageName: string,
-    onClick: () => void
+    projectId: number,
 }
 
 export const SlotItem: React.FC<Props> = (
-    { id, title, date, stageName, onClick }
+    { id, title, date, stageName, projectId }
 ) => {
     return (
         <TableRowsWrapper
-            onClick={onClick}
             key={id}
+            to={`${Routes.kanban}/${projectId}/${id}`}
         >
-            <ColWrapper width={'64px'} center style={{ marginLeft: '16px' }} >
-                {id}
+            <ColWrapper style={{ flex: 1 }} >
+                {title}
             </ColWrapper>
             <ColWrapper style={{ width: '200px', }} >
-                <LoginWrapper>
-                    {title}
-                </LoginWrapper>
-            </ColWrapper>
-            <ColWrapper style={{ width: '200px', }} >
-                <LoginWrapper>
-                    {toNormalDateCalendar(date)}
-                </LoginWrapper>
+                {date && <>{toNormalDateCalendar(date)}</>}
             </ColWrapper>
             <ColWrapper style={{ justifyContent: 'flex-end', paddingRight: 16 }}>
                 {stageName}
@@ -41,25 +36,19 @@ export const SlotItem: React.FC<Props> = (
 }
 
 
-const LoginWrapper = styled.div`
-    margin-left: 12px;
-    text-align: left;
-    justify-content: start;
-    font-weight: 500;
-`
 
-const TableRowsWrapper = styled.div`
+const TableRowsWrapper = styled(Link)`
     text-decoration: none;
     color: ${themeVar('fontColor')};
-    border: 1px solid ${themeVar('default500')};
     height: 50px;
     font-size: 16px;
     font-weight: 300;
+    padding: 12px;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    border-radius: 16px;
+    border-radius: 4px;
 
     &:nth-child(even) {
         background-color: ${themeVar('backgroundColor')};
@@ -76,12 +65,11 @@ type ColWrapperProps = {
     center?: boolean
 }
 const ColWrapper = styled.div<ColWrapperProps>`
-    flex-direction: row;
     display: flex;
     align-items: center;
+    flex-direction: row;
     box-sizing: border-box;
     
-    justify-content: center;
     ${({ hideMobile }) => hideMobile && css`
         @media only screen and (max-width: 600px) {
             display: none;

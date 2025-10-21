@@ -21,7 +21,7 @@ export const TabBar = <T,>({ options, selected, onSet }: Props<T>) => {
             {options.map((item, index) => (
                 <Item
                     key={index}
-                    active={item.value === selected}
+                    $active={item.value === selected}
                     onClick={() => onSet(item.value)}
                 >
                     {item.icon && (<Icon icon={item.icon} />)}
@@ -33,7 +33,7 @@ export const TabBar = <T,>({ options, selected, onSet }: Props<T>) => {
 }
 
 type ItemProps = {
-    active: boolean
+    $active: boolean
 }
 const Item = styled.div<ItemProps>`
     font-size: 16px;
@@ -46,7 +46,7 @@ const Item = styled.div<ItemProps>`
     align-items: center;
     justify-content: center;
     color: ${themeVar('default400')};
-    ${({ active }) => active && css`
+    ${({ $active }) => $active && css`
         color: ${themeVar('accent500')};
     `}
     &:hover {

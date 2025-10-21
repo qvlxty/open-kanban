@@ -23,6 +23,7 @@ export const Kanban = () => {
         <Container>
             {kanbanColumns.map((columnData) => (
                 <StageColumn
+                    projectId={parseInt(p.id!)}
                     key={columnData.id}
                     {...columnData}
                 />

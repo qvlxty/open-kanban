@@ -7,7 +7,7 @@ export const Empty = () => {
         <Container>
             <h1>Канбан проекта пуст</h1>
             <Button 
-                haveIcon
+                $haveIcon
                 onClick={() => createStage()}
             >
                 <Icon icon='add' />

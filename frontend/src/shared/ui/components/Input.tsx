@@ -21,7 +21,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((
             <InputWrapper
                 onChange={(e) => onChange?.(e.target.value)}
                 ref={ref}
-                hasError={hasError}
+                $hasError={hasError}
                 {...props}
             />
             <ErrorText>
@@ -32,7 +32,7 @@ export const Input = React.forwardRef<HTMLInputElement, Props>((
 })
 
 type InputWrapperProps = {
-    hasError?: boolean
+    $hasError?: boolean
 }
 
 const InputWrapper = styled.input<InputWrapperProps>`
@@ -47,7 +47,7 @@ const InputWrapper = styled.input<InputWrapperProps>`
         outline: none;
         border: 1px solid ${themeVar('default600')};
     }
-    ${({ hasError }) => hasError && css`
+    ${({ $hasError }) => $hasError && css`
         border-color: ${themeVar('error')};
     `}
     &::placeholder {

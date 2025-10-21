@@ -21,7 +21,7 @@ export const privateRoutes = [
     component: ProjectsPage,
   },
   {
-    path: `${Routes.kanban}/:id`,
+    path: `${Routes.kanban}/:id/:taskId?`,
     component: KanbanPage,
   },
   {

@@ -36,11 +36,11 @@ export const StageEditForm = () => {
             />
             <Separator />
             <ActionButtons>
-                <Button haveIcon type='submit'>
+                <Button $haveIcon type='submit'>
                     <Icon icon='save' />
                     Сохранить
                 </Button>
-                <Button haveIcon danger onClick={() => deleteHandler()}>
+                <Button $haveIcon $danger onClick={() => deleteHandler()}>
                     <Icon icon='delete' />
                     Удалить
                 </Button>

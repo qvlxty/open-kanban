@@ -55,7 +55,7 @@ export const createTaskReqFx = attachWrapper({
 
 export const fetchSingleTaskReqFx = attachWrapper({
     effect: authRequestFx,
-    mapParams: (id: string | number) => ({
+    mapParams: (id: string) => ({
         url: `/tasks/${id}`,
         method: 'get',
     }),

@@ -11,6 +11,8 @@ import { getSortCardColumn } from "./helpers";
 import { onCreateStageDone, onDeleteStageDone, onStageEditDone } from "@/features/stages/model";
 import { onCreateTaskDone, onDeleteTaskDone, onEditTaskDone } from "@/features/tasks/model";
 import { KanbanGate } from "./public";
+import { Routes } from "@/routes/config";
+import { pushNavigate } from "@/shared/lib/navigate";
 
 $kanbanColumns
     .on(fetchKanbanFx.doneData, (_, c) => c)
@@ -41,4 +43,13 @@ sample({
 sample({
     clock: setTaskStage,
     target: setTaskStageFx,
+})
+
+sample({
+    clock: [
+        onEditTaskDone, onDeleteTaskDone
+    ],
+    source: KanbanGate.state,
+    fn: (projectId) => `${Routes.kanban}/${projectId}`,
+    target: pushNavigate
 })

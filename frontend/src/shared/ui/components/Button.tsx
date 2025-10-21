@@ -19,11 +19,10 @@ export const ActionButton = styled.div`
 `
 
 type ButtonProps = {
-    haveIcon?: boolean
-    primary?: boolean
-    secondary?: boolean
-    danger?: boolean
-    full?: boolean
+    $haveIcon?: boolean
+    $primary?: boolean
+    $secondary?: boolean
+    $danger?: boolean
 }
 
 const ButtonCss = css<ButtonProps & ThemedStyledProps>`
@@ -36,7 +35,7 @@ const ButtonCss = css<ButtonProps & ThemedStyledProps>`
     align-items: center;
     font-size: 16px;
     cursor: pointer;
-    ${({ haveIcon }) => haveIcon && css`
+    ${({ $haveIcon }) => $haveIcon && css`
         svg {
             margin-right: 8px;
         }
@@ -46,7 +45,7 @@ const ButtonCss = css<ButtonProps & ThemedStyledProps>`
         background: ${themeVar('default500')};
         transition: 0.2s;
     }
-    ${({ primary }) => primary && css`
+    ${({ $primary }) => $primary && css`
         background: ${themeVar('accent500')};
         color: #fff;
         border: none;
@@ -55,7 +54,7 @@ const ButtonCss = css<ButtonProps & ThemedStyledProps>`
             background: ${themeVar('accent400')};
         }
     `}
-    ${({ secondary }) => secondary && css`
+    ${({ $secondary }) => $secondary && css`
         background: #29a0e6;
         color: #fff;
         border: none;
@@ -64,7 +63,7 @@ const ButtonCss = css<ButtonProps & ThemedStyledProps>`
             color: #fff;
         }
     `}
-    ${({ danger }) => danger && css`
+    ${({ $danger }) => $danger && css`
         background: #c9403e;
         color: #fff;
         border: none;
@@ -72,9 +71,6 @@ const ButtonCss = css<ButtonProps & ThemedStyledProps>`
             background: #631413;
             color: #fff;
         }
-    `}
-    ${({ full }) => full && css`
-        width: 100%;
     `}
 `
 

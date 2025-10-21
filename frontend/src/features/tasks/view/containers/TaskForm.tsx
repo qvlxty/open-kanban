@@ -86,11 +86,11 @@ export const TaskForm = () => {
             </Row>
             <Separator />
             <ActionButtons>
-                <Button type='reset' haveIcon onClick={() => submit()}>
+                <Button type='reset' $haveIcon onClick={() => submit()}>
                     <Icon icon={'save'} />
                     Сохранить
                 </Button>
-                <Button type='reset' haveIcon danger onClick={() => deleteHandler()}>
+                <Button type='reset' $haveIcon $danger onClick={() => deleteHandler()}>
                     <Icon icon={'delete'} />
                     Удалить
                 </Button>

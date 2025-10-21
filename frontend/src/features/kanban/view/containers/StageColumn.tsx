@@ -14,10 +14,11 @@ import { createTask } from '@/features/tasks/model'
 type Props = {
     id: number
     title: string,
+    projectId: number
     tasks: TaskDto[]
 }
 
-export const StageColumn = ({ title, tasks, id }: Props) => {
+export const StageColumn = ({ title, tasks, projectId, id }: Props) => {
     const [expanded, setExpanded] = React.useState(true)
 
     const [{ isOver }, drop] = useDrop<{ id: number }, any, { isOver: boolean }>(() => ({
@@ -37,12 +38,12 @@ export const StageColumn = ({ title, tasks, id }: Props) => {
 
     return (
         <Container
-            expanded={expanded}
-            isOver={isOver}
-            ref={(e) => { drop(e)}}
+            $expanded={expanded}
+            $isOver={isOver}
+            ref={(e) => { drop(e) }}
         >
             <HeaderWrapper>
-                <TitleWrapper 
+                <TitleWrapper
                     onContextMenu={(e) => {
                         e.preventDefault()
                         setExpanded((t) => !t)
@@ -52,13 +53,14 @@ export const StageColumn = ({ title, tasks, id }: Props) => {
                     <Title>{expanded ? title : '...'}</Title>
                 </TitleWrapper>
                 {expanded && (
-                    <Button secondary onClick={() => createTask(id)}>
+                    <Button $secondary onClick={() => createTask(id)}>
                         <Icon icon={'add'} />
                     </Button>
                 )}
             </HeaderWrapper>
             {expanded && tasks.map((t, index) => (
                 <TaskItem
+                    projectId={projectId}
                     index={index}
                     key={t.id}
                     id={t.id}
@@ -72,8 +74,8 @@ export const StageColumn = ({ title, tasks, id }: Props) => {
 }
 
 type ContainerProps = {
-    isOver: boolean,
-    expanded?: boolean
+    $isOver: boolean,
+    $expanded?: boolean
 }
 
 const Container = styled.div<ContainerProps>`
@@ -84,10 +86,10 @@ const Container = styled.div<ContainerProps>`
     cursor: default;
     border: 1px solid rgba(0,0,0,0);
     min-height: 100vh;
-    ${({ isOver }) => isOver && css`
+    ${({ $isOver }) => $isOver && css`
         border: 1px solid ${themeVar('accent500')};
     `}
-    ${({ expanded }) => !expanded && css`
+    ${({ $expanded }) => !$expanded && css`
         cursor: pointer;
         width: 64px;
     `}

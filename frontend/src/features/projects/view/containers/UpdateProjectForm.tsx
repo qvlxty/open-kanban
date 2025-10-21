@@ -37,7 +37,7 @@ export const UpdateProjectForm = () => {
                 <Button disabled={loading} type='submit'>
                     Сохранить
                 </Button>
-                <Button disabled={loading} danger onClick={() => deleteHandler()}>
+                <Button disabled={loading} $danger onClick={() => deleteHandler()}>
                     Удалить
                 </Button>
             </ButtonsCaption>

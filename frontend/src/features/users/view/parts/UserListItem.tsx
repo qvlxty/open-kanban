@@ -40,7 +40,7 @@ export const UserListItem: React.FC<Props> = (
                 </LoginWrapper>
             </ColWrapper>
             <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: 16 }}>
-                <Button danger onClick={() => handleDelete(id)}>
+                <Button $danger onClick={() => handleDelete(id)}>
                     Удалить
                 </Button>
             </ColWrapper>

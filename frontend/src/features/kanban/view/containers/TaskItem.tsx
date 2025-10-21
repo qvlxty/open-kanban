@@ -9,7 +9,8 @@ import { themeVar } from '@/shared/ui/theming'
 import { TASK_ITEM } from '../../model/const'
 import { sortCard } from '../../model/private'
 import { toNormalDateCalendar } from '@/shared/lib/dates'
-import { openTaskEdit } from '@/features/tasks/model'
+import { Link } from 'react-router'
+import { Routes } from '@/routes/config'
 
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
     index: number,
     name: string,
     dueDate: string,
+    projectId: number,
     assigned: {
         id: number,
         login: string
@@ -25,8 +27,8 @@ type Props = {
 
 const MAX_PREVIEW_AVATAR_COUNT = 3
 
-export const TaskItem = ({ name, id, index, assigned, dueDate }: Props) => {
-    const ref = React.useRef<HTMLDivElement>(null)
+export const TaskItem = ({ name, id, index, assigned, dueDate, projectId }: Props) => {
+    const ref = React.useRef<HTMLAnchorElement>(null)
     const [collected, drag] = useDrag<{ id: number }, unknown, { isDragging: boolean }>(() => ({
         type: TASK_ITEM,
         item: { id }
@@ -49,8 +51,8 @@ export const TaskItem = ({ name, id, index, assigned, dueDate }: Props) => {
     drag(drop(ref))
     return (
         <Container
+            to={`${Routes.kanban}/${projectId}/${id}`}
             ref={ref}
-            onClick={() => openTaskEdit(id)}
             isDragged={collected.isDragging}
         >
             <Header>
@@ -64,6 +66,7 @@ export const TaskItem = ({ name, id, index, assigned, dueDate }: Props) => {
                             {assignedUsersSlice
                                 .map((u, idx) => (
                                     <AvatarThumb
+                                        key={u.id}
                                         nickname={u.login}
                                         style={{
                                             marginBottom: 0,
@@ -101,11 +104,12 @@ type ContainerProps = {
     isDragged?: boolean
 }
 
-const Container = styled.div<ContainerProps>`
+const Container = styled(Link)<ContainerProps>`
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 16px;
+    color: ${themeVar('fontColor')};
     border-left: 4px solid ${themeVar('default600')};
     background-color: ${themeVar('contentBg')};
     margin-left: 4px;

@@ -42,7 +42,7 @@ export const CreateForm = () => {
                 errorText={password.errorText()}
                 type='password'
             />
-            <Button haveIcon type='submit'>
+            <Button $haveIcon type='submit'>
                 <Icon icon='add' />
                 Создать
             </Button>

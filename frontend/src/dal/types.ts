@@ -4,6 +4,7 @@ export type StageDto = {
     description: string,
     createdDate: string,
     updateDate: string,
+    project: ProjectDto
 }
 
 export type TaskDto = {

@@ -1,12 +1,16 @@
 import { Modal } from '@/shared/ui'
-import { useUnit } from 'effector-react'
+import { useGate, useUnit } from 'effector-react'
 
 import { TaskForm } from '../containers'
-import { $modalVisible, fetchSingleTaskFx, taskForm } from '../../model/private'
+import { $modalVisible, EditTaskGate, fetchSingleTaskFx, taskForm } from '../../model/private'
+import { useParams } from 'react-router'
 
 export const TaskEditModal = () => {
     const loading = useUnit(fetchSingleTaskFx.pending)
     const modalVisible = useUnit($modalVisible)
+    const p = useParams<{ taskId?: string }>()
+    useGate(EditTaskGate, p.taskId || null)
+
 
     return (
         <Modal

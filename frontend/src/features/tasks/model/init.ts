@@ -1,14 +1,11 @@
 import { sample } from "effector"
 import {
-    $modalVisible,
-    $selectedTaskId,
     addParticipant,
-    closeModal,
     createTaskFx,
     deleteTaskFx,
     delParticipant,
+    EditTaskGate,
     fetchSingleTaskFx,
-    resetState,
     taskForm,
     updateTaskFx
 } from "./private"
@@ -18,19 +15,11 @@ import {
     onCreateTaskDone,
     onDeleteTaskDone,
     onEditTaskDone,
-    openTaskEdit
 } from "./public"
 
-$selectedTaskId
-    .on(openTaskEdit, (_, s) => s)
-    .reset(resetState)
-
-$modalVisible
-    .on(openTaskEdit, () => true)
-    .reset([closeModal, updateTaskFx.done])
-
 sample({
-    clock: openTaskEdit,
+    clock: EditTaskGate.state,
+    filter: Boolean,
     target: fetchSingleTaskFx
 })
 
@@ -56,14 +45,14 @@ sample({
 
 sample({
     clock: taskForm.formValidated,
-    source: $selectedTaskId,
-    fn: (id, {
+    fn: ({
+        id,
         title,
         description,
         dueDate,
         participants,
     }) => ({
-        id,
+        id: id!,
         title,
         description,
         participants,
@@ -99,7 +88,7 @@ sample({
 sample({
     clock: deleteTask,
     filter: Boolean,
-    source: $selectedTaskId,
+    source: taskForm.fields.id.$value,
     target: deleteTaskFx
 })
 
