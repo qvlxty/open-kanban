@@ -10,8 +10,9 @@ Self-hosted канбан-доска для управления небольши
 
 ## Установка и запуск
 
-`cp .env.example .env`
-`docker compose up --build`
+1. `cp .env.example .env`
+
+2. `docker compose up --build`
 
 ## Конфигурация
 
