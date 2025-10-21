@@ -37,7 +37,6 @@ export class TaskService {
     const updateObject = {
       ...data,
     } as EntityData<Task>
-    console.log({updateObject})
     if (participants) {
       updateObject.assigned = participants
     }
