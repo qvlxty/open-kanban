@@ -20,12 +20,15 @@ export const LoginForm = () => {
                 onChange={fields.login.set}
                 hasError={fields.login.hasError()}
                 errorText={fields.login.errorText()}
+                placeholder='Логин пользователя'
             />
             <Input
                 value={fields.password.value}
                 onChange={fields.password.set}
                 hasError={fields.password.hasError()}
                 errorText={fields.password.errorText()}
+                placeholder='Пароль пользователя'
+                type='password'
             />
             <Button type='submit'>
                 Войти

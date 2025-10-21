@@ -23,7 +23,7 @@ export const stageForm = createForm({
         },
         description: {
             init: "",
-            rules: [requiredStringValidator],
+            rules: [],
         },
     },
     validateOn: ["submit"],

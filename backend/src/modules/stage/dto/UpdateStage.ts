@@ -6,14 +6,7 @@ export class UpdateStageDto {
     title: string;
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     description: string;
 
-    @IsString()
-    @IsOptional()
-    stack?: string;
-
-    @IsBoolean()
-    @IsOptional()
-    isOpen?: boolean
 }

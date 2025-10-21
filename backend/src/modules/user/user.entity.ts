@@ -1,4 +1,4 @@
-import { Collection, Entity, OneToMany, PrimaryKey, Property } from "@mikro-orm/core";
+import { Collection, Entity, OneToMany, PrimaryKey, Property, Unique } from "@mikro-orm/core";
 import { Task } from "../task/task.entity";
 
 @Entity()

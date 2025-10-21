@@ -4,6 +4,7 @@ import { loadDalFx } from "@/dal/request";
 import { loadAppFx } from "./private";
 import { loadThemeFx } from "@/shared/ui/theming";
 import { fetchUsersFx } from "@/features/users/model";
+import { $isUserAuthorized } from "@/features/login/model";
 
 $isApploaded
     .on(loadAppFx.done, () => true)
@@ -17,7 +18,12 @@ sample({
 loadAppFx.use(async () => {
     await Promise.all([
         loadDalFx(),
-        loadThemeFx(),
-        fetchUsersFx()
+        loadThemeFx()
     ])
+})
+
+sample({
+    clock: loadAppFx.done,
+    filter: $isUserAuthorized,
+    target: fetchUsersFx
 })

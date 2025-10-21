@@ -8,8 +8,8 @@ export class DatabaseSeeder extends Seeder {
 
   async run(em: EntityManager): Promise<void> {
      await em.insert(User, {
-      login: 'test',
-      password: bcrypt.hashSync('test',10),
+      login: 'admin',
+      password: bcrypt.hashSync('admin',10),
       name: 'admin'
     });
   }

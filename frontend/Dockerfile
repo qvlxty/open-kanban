@@ -1,24 +1,18 @@
-FROM node:20.11.1-alpine3.19 AS build
+FROM node:20-alpine AS builder
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-RUN apk add --update --no-cache git openssh && rm -rf /var/cache/apk/*
-
-COPY package.json  ./
-COPY yarn.lock  ./
-
-RUN yarn
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 COPY . .
-
 RUN yarn build
 
-FROM nginx:stable-alpine3.17-slim AS serve
+FROM nginx:1.27-alpine
 
+COPY --from=builder /app/dist /usr/share/nginx/html
 COPY configs/nginx.conf /etc/nginx/conf.d/default.conf
 
-COPY --from=build /usr/src/app/dist /app
-
-EXPOSE 8081
+EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

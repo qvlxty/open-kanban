@@ -23,7 +23,7 @@ export const RouterGuard = ({isPrivate, children}: React.PropsWithChildren<Props
             navigate(Routes.projects, { replace: true })
             return
         }
-    },[])
+    },[isUserAuthorized])
 
     React.useEffect(() => {
         const unwatch = pushNavigate.watch(navigate)

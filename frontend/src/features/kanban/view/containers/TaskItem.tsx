@@ -46,7 +46,7 @@ export const TaskItem = ({ name, id, index, assigned, dueDate, projectId }: Prop
             })
         },
     }, [index])
-    const assignedUsersSlice = React.useMemo(() => assigned.slice(0, MAX_PREVIEW_AVATAR_COUNT), [])
+    const assignedUsersSlice = React.useMemo(() => assigned.slice(0, MAX_PREVIEW_AVATAR_COUNT), [assigned])
 
     drag(drop(ref))
     return (
