@@ -63,7 +63,7 @@ export const StageColumn = ({ title, tasks, id }: Props) => {
                     key={t.id}
                     id={t.id}
                     name={t.title}
-                    user={t.user}
+                    assigned={t.assigned}
                     dueDate={t.dueDate}
                 />
             ))}

@@ -13,8 +13,9 @@ export type TaskDto = {
     createdDate: string,
     updateDate: string,
     dueDate: string,
-    user: UserDto,
+    assigned: UserDto[],
     stage: StageDto,
+    user: UserDto
 }
 
 

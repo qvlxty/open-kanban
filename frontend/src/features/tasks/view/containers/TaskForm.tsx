@@ -2,21 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 import { useForm } from 'effector-forms'
 
-import { $users } from '@/features/users/model'
-import { Button, DatePicker, Dropdown, Icon, Input, MdEditor } from '@/shared/ui'
+import { Button, DatePicker, Icon, Input, MdEditor } from '@/shared/ui'
 
-import { useStoreMap } from 'effector-react'
 import { taskForm } from '../../model/private'
 import { deleteTask } from '../../model'
+import { ParticipantField } from './ParticipantsField'
+import { CurrentParticipant } from './CurrentParticipant'
+import { ParticipantItem } from '../parts'
+import { toNormalDateCalendar } from '@/shared/lib/dates'
 
 
 export const TaskForm = () => {
     const inputRef = React.useRef<HTMLInputElement>(null)
-    const users = useStoreMap({
-        store: $users,
-        keys: [],
-        fn: (u) => u.map((item) => ({ value: item.id, text: item.name }))
-    })
     const { fields, submit } = useForm(taskForm)
 
     const handleSubmit = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -54,19 +51,37 @@ export const TaskForm = () => {
                     />
                 </EditorWrapper>
                 <SpecCol>
-                     <label>Дедлайн</label>
-                     <DatePicker
-                        placeholder='DD/MM/YYYY' 
+                    {fields.user.value && (
+                        <>
+                            <label>Дата создания</label>
+                            <SpecRow>
+                                <Icon icon='calendar' />
+                                {toNormalDateCalendar(fields.createdDateAt.value)}
+                            </SpecRow>
+                        </>
+                    )}
+                    {fields.user.value && (
+                        <>
+                            <label>Создатель задачи</label>
+                            <ParticipantItem
+                                login={fields.user.value?.login}
+                                name={fields.user.value?.name}
+                            />
+                        </>
+                    )}
+                    <label>Дедлайн</label>
+                    <DatePicker
+                        placeholder='DD/MM/YYYY'
                         value={fields.dueDate.value}
                         onChange={fields.dueDate.set}
-                     />
-                    <label>Добавить исполнителей </label>
-                    <Dropdown
-                        placeholder='Исполнители'
-                        options={users}
-                        selected={fields.userId.value}
-                        onOptionChange={fields.userId.onChange}
                     />
+                    <ParticipantField />
+                    {fields.participants.value.map((t) => (
+                        <CurrentParticipant
+                            key={t}
+                            id={t}
+                        />
+                    ))}
                 </SpecCol>
             </Row>
             <Separator />
@@ -122,4 +137,13 @@ const SpecCol = styled.div`
 
 const Separator = styled.div`
     flex: 1;
+`
+
+const SpecRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    height: 40px;
+    align-items: center;
+    margin-left: 8px;
 `

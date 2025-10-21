@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
 import { InjectRepository } from '@mikro-orm/nestjs';
-import { EntityRepository } from '@mikro-orm/postgresql';
+import { EntityData, EntityManager, EntityRepository, wrap } from '@mikro-orm/postgresql';
 import { Task } from './task.entity';
 import { CreateTaskDto } from './dto/CreateTask.dto';
 import { UpdateTaskDto } from './dto/UpdateTask.dto';
@@ -10,6 +10,7 @@ import { UpdateOrderDto } from './dto/UpdateOrder.dto';
 @Injectable()
 export class TaskService {
   constructor(
+    private readonly em: EntityManager,
     @InjectRepository(Task)
     private taskRepo: EntityRepository<Task>,
   ) { }
@@ -26,17 +27,25 @@ export class TaskService {
   }
 
   getOne(id: number) {
-    return this.taskRepo.findOneOrFail({ id });
+    return this.taskRepo.findOneOrFail({ id }, {
+      populate: ['assigned', 'user'],
+      exclude: ['assigned.password','user.password']
+    });
   }
 
-  async update(id: number, {stageId, id: _,  ...data}: UpdateTaskDto) {
-    const stageUpdate = stageId 
-      ? { stageId } 
-      : {}
-    await this.taskRepo.nativeUpdate({ id }, {
+  async update(id: number, {stageId, id: _,participants,  ...data}: UpdateTaskDto) {
+    const updateObject = {
       ...data,
-      ...stageUpdate
-    });
+      assigned: participants,
+    } as EntityData<Task>
+    if (stageId) {
+      updateObject.stage = stageId
+    }
+    const targetTask = await this.taskRepo.findOneOrFail(id, {
+      populate: ['assigned']
+    })
+    wrap(targetTask).assign(updateObject)
+    await this.em.persistAndFlush(targetTask)
   }
 
   async updateOrder(data: UpdateOrderDto) {

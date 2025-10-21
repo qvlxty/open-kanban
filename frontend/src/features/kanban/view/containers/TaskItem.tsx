@@ -2,7 +2,7 @@ import React from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import styled, { css } from 'styled-components'
 
-import { Icon } from '@/shared/ui'
+import { AvatarThumb, Icon } from '@/shared/ui'
 import { themeVar } from '@/shared/ui/theming'
 
 
@@ -17,13 +17,15 @@ type Props = {
     index: number,
     name: string,
     dueDate: string,
-    user?: {
+    assigned: {
         id: number,
-        name: string
-    }
+        login: string
+    }[]
 }
 
-export const TaskItem = ({ name, id, index, user, dueDate }: Props) => {
+const MAX_PREVIEW_AVATAR_COUNT = 3
+
+export const TaskItem = ({ name, id, index, assigned, dueDate }: Props) => {
     const ref = React.useRef<HTMLDivElement>(null)
     const [collected, drag] = useDrag<{ id: number }, unknown, { isDragging: boolean }>(() => ({
         type: TASK_ITEM,
@@ -42,6 +44,7 @@ export const TaskItem = ({ name, id, index, user, dueDate }: Props) => {
             })
         },
     }, [index])
+    const assignedUsersSlice = React.useMemo(() => assigned.slice(0, MAX_PREVIEW_AVATAR_COUNT), [])
 
     drag(drop(ref))
     return (
@@ -51,10 +54,26 @@ export const TaskItem = ({ name, id, index, user, dueDate }: Props) => {
             isDragged={collected.isDragging}
         >
             <Header>
-                <TitleWrapper>
-                    {user && (
-                        <><Icon icon={'users'} />{user?.name}</>
-                    )}
+                <TitleWrapper
+                >
+                    {assignedUsersSlice.length > 0 && (
+                        <div style={{
+                            width: `${25 + assignedUsersSlice.length * 10}px`,
+                            height: '30px'
+                        }}>
+                            {assignedUsersSlice
+                                .map((u, idx) => (
+                                    <AvatarThumb
+                                        nickname={u.login}
+                                        style={{
+                                            marginBottom: 0,
+                                            marginLeft: `${idx * 10}px`,
+                                            position: 'absolute'
+                                        }}
+                                    />
+                                ))
+                            }
+                        </div>)}
                     {name}
                 </TitleWrapper>
             </Header>
@@ -70,6 +89,7 @@ export const TaskItem = ({ name, id, index, user, dueDate }: Props) => {
 const DateBadge = styled.div`
     display: flex;
     align-items: center;
+    font-size: 12px;
     flex-direction: row;
     svg {
         margin-right: 5px;

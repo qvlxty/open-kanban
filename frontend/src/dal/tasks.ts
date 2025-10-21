@@ -77,6 +77,7 @@ export type UpdateTaskPayload = {
     title: string,
     description: string,
     dueDate?: string | null,
+    participants: number[]
 }
 
 

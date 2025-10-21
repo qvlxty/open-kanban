@@ -1,6 +1,25 @@
 import { sample } from "effector"
-import { $modalVisible, $selectedTaskId, closeModal, createTaskFx, deleteTaskFx, fetchSingleTaskFx, resetState, taskForm, updateTaskFx } from "./private"
-import { createTask, deleteTask, onCreateTaskDone, onDeleteTaskDone, onEditTaskDone, openTaskEdit } from "./public"
+import {
+    $modalVisible,
+    $selectedTaskId,
+    addParticipant,
+    closeModal,
+    createTaskFx,
+    deleteTaskFx,
+    delParticipant,
+    fetchSingleTaskFx,
+    resetState,
+    taskForm,
+    updateTaskFx
+} from "./private"
+import {
+    createTask,
+    deleteTask,
+    onCreateTaskDone,
+    onDeleteTaskDone,
+    onEditTaskDone,
+    openTaskEdit
+} from "./public"
 
 $selectedTaskId
     .on(openTaskEdit, (_, s) => s)
@@ -18,10 +37,9 @@ sample({
 sample({
     clock: fetchSingleTaskFx.doneData,
     fn: (p) => ({
-        title: p.title,
-        description: p.description,
-        userId: p.user.id,
-        date: new Date(p.dueDate)
+        ...p,
+        dueDate: p.dueDate === null ? null : new Date(p.dueDate),
+        participants: p.assigned.map(({ id }) => id),
     }),
     target: taskForm.set
 })
@@ -42,16 +60,35 @@ sample({
     fn: (id, {
         title,
         description,
-        userId,
         dueDate,
+        participants,
     }) => ({
         id,
         title,
         description,
+        participants,
         dueDate: dueDate?.toISOString() || null,
     }),
     filter: Boolean,
     target: updateTaskFx,
+})
+
+sample({
+    clock: addParticipant,
+    source: taskForm.fields.participants.$value,
+    fn: (currentParticipants, newId) => currentParticipants.includes(newId)
+        ? currentParticipants
+        : [...currentParticipants, newId],
+    target: taskForm.fields.participants.$value
+})
+
+sample({
+    clock: delParticipant,
+    source: taskForm.fields.participants.$value,
+    fn: (currentParticipants, idToDelete) => currentParticipants.filter(
+        (id) => id !== idToDelete
+    ),
+    target: taskForm.fields.participants.$value
 })
 
 sample({

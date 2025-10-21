@@ -34,8 +34,13 @@ export class StageService {
   getKanban(projectId: number) {
     return this.stageRepo.findAll({
       where: { project: projectId, },
-      fields: ['id','title','tasks.id','tasks.order','tasks.createdDateAt','tasks.dueDate','tasks.title'],
-      populate: ['tasks', 'tasks.user'],
+      fields: [
+        'id',
+        'title',
+        'tasks.id','tasks.order','tasks.createdDateAt','tasks.dueDate','tasks.title',
+        'tasks.assigned.id', 'tasks.assigned.login'  
+      ],
+      populate: ['tasks', 'tasks.assigned'],
       orderBy: {
         id: 'asc',
         tasks: {

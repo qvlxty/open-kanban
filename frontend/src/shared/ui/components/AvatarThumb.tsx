@@ -2,12 +2,13 @@ import { stringToColor } from "@/shared/lib/gen-color-string";
 import styled from "styled-components";
 
 type Props = {
-    nickname: string
+    nickname: string,
+    style?: React.CSSProperties 
 }
 
-export const AvatarThumb = ({ nickname }: Props) => {
+export const AvatarThumb = ({ nickname, style }: Props) => {
     return (
-        <Wrap style={{ backgroundColor: stringToColor(nickname) }} >
+        <Wrap style={{ ...style, backgroundColor: stringToColor(nickname) }} >
             {nickname[0].toUpperCase()}
         </Wrap>
     )

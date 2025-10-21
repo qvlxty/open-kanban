@@ -1,4 +1,4 @@
-import { IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsArray, IsDateString, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateTaskDto {
     id?: number;
@@ -18,4 +18,8 @@ export class UpdateTaskDto {
     @IsDateString()
     @IsOptional()
     dueDate: Date
+
+    @IsArray()
+    @IsOptional()
+    participants: number[]
 }
