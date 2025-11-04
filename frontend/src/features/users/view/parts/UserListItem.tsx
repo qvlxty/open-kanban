@@ -2,9 +2,8 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 
 import { deleteUser } from '../../model/private'
-import { themeVar } from '@/shared/ui/theming'
-import { AvatarThumb, Button } from '@/shared/ui'
-import { stringToColor } from '@/shared/lib/gen-color-string'
+import { AvatarThumb, Button, themeVar } from 'igoresha-dev-ui-kit'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
     id: number,
@@ -15,12 +14,12 @@ type Props = {
 export const UserListItem: React.FC<Props> = (
     { id, login, name }
 ) => {
-
+    const { t } = useTranslation()
     const handleDelete = React.useCallback((id: string | number) => {
-        if (confirm('Вы действительно хотите удалить данного юзера?')) {
+        if (confirm(t('pages.users.deleteConfirm'))) {
             deleteUser(id)
         }
-    }, [])
+    }, [t])
 
     return (
         <TableRowsWrapper key={id}>
@@ -41,7 +40,7 @@ export const UserListItem: React.FC<Props> = (
             </ColWrapper>
             <ColWrapper width={'96px'} style={{ justifyContent: 'flex-end', paddingRight: 16 }}>
                 <Button $danger onClick={() => handleDelete(id)}>
-                    Удалить
+                    {t('misc.delete')}
                 </Button>
             </ColWrapper>
         </TableRowsWrapper>

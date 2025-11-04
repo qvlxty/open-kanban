@@ -2,34 +2,36 @@ import React from 'react'
 import styled from 'styled-components'
 import { useForm } from 'effector-forms'
 
-import { Button, Icon, Input, MdEditor } from '@/shared/ui'
+import { Icon, MdEditor } from '@/shared/ui'
 import { deleteStage, stageForm } from '../../model/private'
+import { Button, Input } from 'igoresha-dev-ui-kit'
+import { useTranslation } from 'react-i18next'
 
 
 export const StageEditForm = () => {
     const { submit, fields } = useForm(stageForm)
-
+    const { t } = useTranslation()
     const handleSubmit = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         submit()
     }, [])
 
     const deleteHandler = React.useCallback(() => {
-        if (confirm('Удалить карточку задачи? ')) {
+        if (confirm(t('pages.stages.deleteConfirm'))) {
             deleteStage()
         }
     }, [])
 
     return (
         <Container onSubmit={handleSubmit}>
-            <label>Название колонки</label>
+            <label>{t('pages.stages.updateForm.title')}</label>
             <Input
                 value={fields.title.value}
                 onChange={fields.title.set}
                 hasError={fields.title.hasError()}
                 errorText={fields.title.errorText()}
             />
-            <label>Описание</label>
+            <label>{t('pages.stages.updateForm.description')}</label>
             <MdEditor
                 value={fields.description.value}
                 onChange={fields.description.set}
@@ -38,11 +40,11 @@ export const StageEditForm = () => {
             <ActionButtons>
                 <Button $haveIcon type='submit'>
                     <Icon icon='save' />
-                    Сохранить
+                    {t('misc.save')}
                 </Button>
                 <Button $haveIcon $danger onClick={() => deleteHandler()}>
                     <Icon icon='delete' />
-                    Удалить
+                    {t('misc.delete')}
                 </Button>
             </ActionButtons>
         </Container>

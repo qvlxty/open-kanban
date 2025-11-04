@@ -1,11 +1,11 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { themeVar } from '@/shared/ui/theming'
-import { Button, Icon } from '@/shared/ui'
+import { Icon } from '@/shared/ui'
 import { openUpdateProject } from '../../model/private'
 import { Link } from 'react-router'
 import { Routes } from '@/routes/config'
+import { Button, themeVar } from 'igoresha-dev-ui-kit'
 
 type Props = {
     id: number,

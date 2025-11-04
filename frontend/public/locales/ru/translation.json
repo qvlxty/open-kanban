@@ -1,0 +1,58 @@
+{
+    "pages": {
+        "projects": {
+            "title": "Проекты",
+            "create": "Создать проект",
+            "deleteConfirm": "Удалить проект?",
+            "updateForm": {
+                "name": "Название проекта"
+            }
+        },
+        "tasks": {
+            "deleteConfirm": "Удалить задачу?",
+            "updateForm": {
+                "title":"Название задачи",
+                "description":"Описание",
+                "createdDateAt":"Дата создания",
+                "user":"Создатель задачи",
+                "dueDate":"Дедлайн",
+                "participants": "Исполнители"
+            },
+            "newTaskName":"Новая задача",
+            "empty":"Канбан проекта пуст",
+            "emptyAction":"Создать певрую колонку"
+        },
+        "users": {
+            "deleteConfirm": "Удалить пользователя?",
+            "create": "Добавить",
+            "list": "Список пользователей",
+            "createForm": {
+                "login":"Логин",
+                "password":"Пароль",
+                "name":"Имя"
+            }
+        },
+        "slots": {
+            "title": "Предстоящие события"
+        },
+        "stages": {
+            "deleteConfirm": "Удалить карточку задачи?",
+            "updateForm": {
+                "title": "Название колонки",
+                "description": "Описание"
+            }
+        },
+        "settings": {
+            "title": "Настройки",
+            "theme": "Тема",
+            "logout": "Выйти",
+            "language": "Язык"
+        }
+    },
+    "misc": {
+        "delete": "Удалить",
+        "save": "Сохранить",
+        "create": "Создать",
+        "add": "Добавить"
+    }
+}

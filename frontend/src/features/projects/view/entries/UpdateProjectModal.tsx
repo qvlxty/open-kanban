@@ -1,8 +1,8 @@
-import { Loader, Modal } from '@/shared/ui'
 import { useUnit } from 'effector-react'
 
 import { $modalVisible, projectForm, updateProjectFx } from '../../model/private'
 import { UpdateProjectForm } from '../containers'
+import { Modal } from 'igoresha-dev-ui-kit'
 
 export const UpdateProjectModal = () => {
     const loading = useUnit(updateProjectFx.pending)

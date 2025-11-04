@@ -16,9 +16,10 @@ const config: Configuration = merge(loadersConfig, {
   entry: path.join(appDirectory, './src/App.tsx'),
   output: {
     path: path.join(appDirectory, envVars.OUTPUT_DIR),
-    publicPath: envVars.PUBLIC_PATH,
+    publicPath: '/',
     filename: 'js/[name].[fullhash].js',
     chunkFilename: 'js/[id].[fullhash].js',
+    clean: true,
   },
   resolve: { extensions: ['.ts', '.tsx', '.js', '.jsx'], },
   plugins: [

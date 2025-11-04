@@ -3,11 +3,9 @@ import { useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css'; 
 import styled from 'styled-components';
-import { themeVar } from '../theming';
-import { Input } from './Input';
 import { toNormalDateCalendar } from '@/shared/lib/dates';
-import { Button } from './Button';
 import { Icon } from './Icon';
+import { Button, Input, themeVar } from 'igoresha-dev-ui-kit';
 
 type Props = {
     value?: Date | null,

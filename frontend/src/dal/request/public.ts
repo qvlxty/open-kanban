@@ -1,4 +1,4 @@
-import { attach, createEffect } from "effector";
+import { attach, createEffect, sample } from "effector";
 import { ACCESS_TOKEN_KEY } from "./const";
 import { createPersistedStore } from "@/shared/lib/create-persisted-store";
 import { AxiosError, AxiosResponse } from "axios";
@@ -30,4 +30,9 @@ export const authRequestFx = attach({
         accessToken,
         ...params,
     }),
+})
+
+export const onRequestUnauthorized = sample({
+    clock: authRequestFx.fail,
+    filter: (p) => p.error.status === 401
 })

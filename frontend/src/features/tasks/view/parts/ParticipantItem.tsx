@@ -1,4 +1,4 @@
-import { AvatarThumb } from "@/shared/ui"
+import { AvatarThumb } from "igoresha-dev-ui-kit"
 import styled from "styled-components"
 
 type Props = {

@@ -1,11 +1,13 @@
 import styled from 'styled-components'
 import { CreateProject, ProjectList } from '@/features/projects/view'
+import { useTranslation } from 'react-i18next'
 
 
 export const ProjectsPage = () => {
+    const { t } = useTranslation('translation', { keyPrefix: 'pages.projects' })
     return (
         <Container>
-            <h1>Проекты</h1>
+            <h1>{t('title')}</h1>
             <CreateProject />
             <ProjectList />
         </Container>

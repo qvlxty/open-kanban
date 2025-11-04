@@ -29,7 +29,7 @@ export type SetTaskStagePayload = {
 
 export const setTaskStageReqFx = attachWrapper({
     effect: authRequestFx,
-    mapParams: ({id, stageId}: SetTaskStagePayload) => ({
+    mapParams: ({ id, stageId }: SetTaskStagePayload) => ({
         url: `/tasks/${id}`,
         method: 'patch',
         body: { stageId }
@@ -41,11 +41,11 @@ export const setTaskStageReqFx = attachWrapper({
 
 export const createTaskReqFx = attachWrapper({
     effect: authRequestFx,
-    mapParams: (stageId: number | void) => ({
+    mapParams: ({ stageId, title }: { stageId: number | void, title: string }) => ({
         url: `/tasks`,
         method: 'post',
         body: {
-            title: 'Новая задача',
+            title,
             stageId,
         }
     }),

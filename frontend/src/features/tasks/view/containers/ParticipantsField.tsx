@@ -1,12 +1,12 @@
 import { useStoreMap, useUnit } from "effector-react"
 import { addParticipant, taskForm } from "../../model/private"
 import { $users } from "@/features/users/model"
-import { useField } from "effector-forms"
-import { Dropdown } from "@/shared/ui"
+import { Dropdown } from "igoresha-dev-ui-kit"
+import { useTranslation } from "react-i18next"
 
 export const ParticipantField = () => {
+    const { t } = useTranslation()
     const currentParticipants = useUnit(taskForm.fields.participants.$value)
-    const user = useField(taskForm.fields.user)
     const users = useStoreMap({
         store: $users,
         keys: [currentParticipants],
@@ -16,10 +16,10 @@ export const ParticipantField = () => {
 
     return (
         <>
-            <label>Исполнители </label>
+            <label>{t('pages.tasks.updateForm.participants')} </label>
             {users.length !== 0 && (
                 <Dropdown
-                    placeholder='Добавить'
+                    placeholder={t('misc.add')}
                     options={users}
                     onOptionChange={(d) => addParticipant(Number(d))}
                 />

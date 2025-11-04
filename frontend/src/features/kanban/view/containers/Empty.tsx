@@ -1,17 +1,20 @@
+import { Icon } from "@/shared/ui"
+import { Button } from "igoresha-dev-ui-kit"
 import { createStage } from "@/features/stages/model"
-import { Button, Icon } from "@/shared/ui"
 import styled from "styled-components"
+import { useTranslation } from "react-i18next"
 
 export const Empty = () => {
+    const { t } = useTranslation()
     return (
         <Container>
-            <h1>Канбан проекта пуст</h1>
-            <Button 
+            <h1>{t('pages.tasks.empty')}</h1>
+            <Button
                 $haveIcon
                 onClick={() => createStage()}
             >
                 <Icon icon='add' />
-                Создать первую колонку
+                {t('pages.tasks.emptyAction')}
             </Button>
         </Container>
     )

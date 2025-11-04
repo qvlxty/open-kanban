@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { useForm } from 'effector-forms'
 
-import { Button, DatePicker, Icon, Input, MdEditor } from '@/shared/ui'
+import { DatePicker, Icon, MdEditor } from '@/shared/ui'
+import { Button, Input } from 'igoresha-dev-ui-kit'
 
 import { taskForm } from '../../model/private'
 import { deleteTask } from '../../model'
@@ -10,10 +11,12 @@ import { ParticipantField } from './ParticipantsField'
 import { CurrentParticipant } from './CurrentParticipant'
 import { ParticipantItem } from '../parts'
 import { toNormalDateCalendar } from '@/shared/lib/dates'
+import { useTranslation } from 'react-i18next'
 
 
 export const TaskForm = () => {
     const inputRef = React.useRef<HTMLInputElement>(null)
+    const { t } = useTranslation()
     const { fields, submit } = useForm(taskForm)
 
     const handleSubmit = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +37,7 @@ export const TaskForm = () => {
 
     return (
         <Container onSubmit={handleSubmit}>
-            <label>Название задачи</label>
+            <label>{t('pages.tasks.updateForm.title')}</label>
             <Input
                 ref={inputRef}
                 value={fields.title.value}
@@ -44,7 +47,7 @@ export const TaskForm = () => {
             />
             <Row>
                 <EditorWrapper>
-                    <label>Описание</label>
+                    <label>{t('pages.tasks.updateForm.description')}</label>
                     <MdEditor
                         value={fields.description.value}
                         onChange={fields.description.set}
@@ -53,7 +56,7 @@ export const TaskForm = () => {
                 <SpecCol>
                     {fields.user.value && (
                         <>
-                            <label>Дата создания</label>
+                            <label>{t('pages.tasks.updateForm.createdDateAt')}</label>
                             <SpecRow>
                                 <Icon icon='calendar' />
                                 {toNormalDateCalendar(fields.createdDateAt.value)}
@@ -62,14 +65,14 @@ export const TaskForm = () => {
                     )}
                     {fields.user.value && (
                         <>
-                            <label>Создатель задачи</label>
+                            <label>{t('pages.tasks.updateForm.user')}</label>
                             <ParticipantItem
                                 login={fields.user.value?.login}
                                 name={fields.user.value?.name}
                             />
                         </>
                     )}
-                    <label>Дедлайн</label>
+                    <label>{t('pages.tasks.updateForm.dueDate')}</label>
                     <DatePicker
                         placeholder='DD/MM/YYYY'
                         value={fields.dueDate.value}
@@ -88,11 +91,11 @@ export const TaskForm = () => {
             <ActionButtons>
                 <Button type='reset' $haveIcon onClick={() => submit()}>
                     <Icon icon={'save'} />
-                    Сохранить
+                    {t('misc.save')}
                 </Button>
                 <Button type='reset' $haveIcon $danger onClick={() => deleteHandler()}>
                     <Icon icon={'delete'} />
-                    Удалить
+                    {t('misc.delete')}
                 </Button>
             </ActionButtons>
         </Container>

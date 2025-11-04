@@ -5,11 +5,12 @@ import { useDrop } from 'react-dnd'
 import { TASK_ITEM } from '../../model/const'
 import { setTaskStage } from '../../model/private'
 import { TaskItem } from './TaskItem'
-import { themeVar } from '@/shared/ui/theming'
-import { Button, Icon } from '@/shared/ui'
 import { TaskDto } from '@/dal/types'
 import { openStageEdit } from '@/features/stages/model'
 import { createTask } from '@/features/tasks/model'
+import { Button, themeVar } from 'igoresha-dev-ui-kit'
+import { Icon } from '@/shared/ui'
+import { useTranslation } from 'react-i18next'
 
 type Props = {
     id: number
@@ -20,7 +21,7 @@ type Props = {
 
 export const StageColumn = ({ title, tasks, projectId, id }: Props) => {
     const [expanded, setExpanded] = React.useState(true)
-
+    const { t } = useTranslation()
     const [{ isOver }, drop] = useDrop<{ id: number }, any, { isOver: boolean }>(() => ({
         accept: TASK_ITEM,
         collect: (monitor) => ({
@@ -53,7 +54,9 @@ export const StageColumn = ({ title, tasks, projectId, id }: Props) => {
                     <Title>{expanded ? title : '...'}</Title>
                 </TitleWrapper>
                 {expanded && (
-                    <Button $secondary onClick={() => createTask(id)}>
+                    <Button $secondary onClick={() => createTask({
+                        stageId: id, title: t('pages.tasks.newTaskName')
+                    })}>
                         <Icon icon={'add'} />
                     </Button>
                 )}

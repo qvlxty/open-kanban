@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import ReactMarkdown from 'react-markdown'
-import { TextArea } from './TextArea'
-import { themeVar } from '../theming'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { TextArea, themeVar } from 'igoresha-dev-ui-kit'
 
 type Props = {
     value: string,

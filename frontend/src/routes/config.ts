@@ -1,10 +1,11 @@
-import { KanbanPage, SlotsPage, LoginPage, UsersPage, ProjectsPage  } from "@/pages"
+import { KanbanPage, SlotsPage, LoginPage, UsersPage, ProjectsPage, SettingsPage  } from "@/pages"
 
 export enum Routes {
     root = '/',
     kanban = '/kanban',
     users = '/users',
     slots = '/slots',
+    settings = '/settings',
     projects = '/projects',
 }
 
@@ -31,5 +32,9 @@ export const privateRoutes = [
   {
     path: Routes.slots,
     component: SlotsPage,
+  },
+  {
+    path: Routes.settings,
+    component: SettingsPage,
   },
 ]

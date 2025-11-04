@@ -8,5 +8,3 @@ import './features/tasks/init'
 import './features/stages/init'
 import './features/users/init'
 import './features/slots/init'
-
-import '@/shared/ui/theming/init'

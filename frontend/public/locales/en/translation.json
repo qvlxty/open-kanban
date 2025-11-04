@@ -1,0 +1,58 @@
+{
+    "pages": {
+        "projects": {
+            "title": "Projects",
+            "create": "Create",
+            "deleteConfirm": "Remove project?",
+            "updateForm": {
+                "name": "Project's title"
+            }
+        },
+        "tasks": {
+            "deleteConfirm": "Remove task?",
+            "updateForm": {
+                "title": "Task name",
+                "description": "Task text",
+                "createdDateAt": "Create Date",
+                "user": "Author",
+                "dueDate": "Deadline",
+                "participants": "Participants"
+            },
+            "newTaskName":"New task",
+            "empty":"Kanban is empty",
+            "emptyAction":"Create first column"
+        },
+        "users": {
+            "deleteConfirm": "Remove user?",
+            "create": "Create",
+            "list": "Userlist",
+            "createForm": {
+                "login": "Login",
+                "password": "Password",
+                "name": "Name"
+            }
+        },
+        "slots": {
+            "title": "Upcoming events"
+        },
+        "stages": {
+            "deleteConfirm": "Remove column?",
+            "updateForm": {
+                "title": "Column's name",
+                "description": "Description"
+            }
+        },
+        "settings": {
+            "title": "Settings",
+            "theme": "Theme",
+            "logout": "Logout",
+            "language": "Language"
+        }
+    },
+    "misc": {
+        "delete": "Delete",
+        "save": "Save",
+        "create": "Create",
+        "add": "Add"
+    }
+}

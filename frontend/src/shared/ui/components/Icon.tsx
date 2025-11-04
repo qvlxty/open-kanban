@@ -1,7 +1,8 @@
 import { BsKanban, BsLamp, BsPlusLg } from 'react-icons/bs'
 import { IoMdDocument } from 'react-icons/io'
-import { FiEdit2, FiList, FiUsers, FiLogOut, FiSave } from 'react-icons/fi'
+import { FiEdit2, FiList, FiUsers, FiLogOut, FiSave, FiSettings } from 'react-icons/fi'
 import { AiOutlineCalendar, AiOutlineMinus } from 'react-icons/ai'
+import { MdOutlineLanguage } from "react-icons/md";
 
 const Icons = {
   'kanban': BsKanban,
@@ -14,8 +15,9 @@ const Icons = {
   'doc': IoMdDocument,
   'calendar': AiOutlineCalendar,
   'users': FiUsers,
-  'lamp': BsLamp
-
+  'settings': FiSettings,
+  'lamp': BsLamp,
+  'language': MdOutlineLanguage,
 }
 
 export type IconName = keyof typeof Icons

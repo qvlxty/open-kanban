@@ -5,8 +5,9 @@ import { $kanbanColumns } from '../../model/private'
 import { Empty, StageColumn } from '../containers'
 import { useParams } from 'react-router'
 import { KanbanGate } from '../../model'
-import { Button, Icon } from '@/shared/ui'
 import { createStage } from '@/features/stages/model'
+import { Button } from 'igoresha-dev-ui-kit'
+import { Icon } from '@/shared/ui'
 
 
 export const Kanban = () => {

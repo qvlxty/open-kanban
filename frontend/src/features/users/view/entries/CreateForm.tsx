@@ -1,11 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useField } from 'effector-forms'
-import { Input, Button, Icon } from '@/shared/ui'
 
 import { userForm } from '../../model/private'
+import { Button, Input } from 'igoresha-dev-ui-kit'
+import { Icon } from '@/shared/ui'
+import { useTranslation } from 'react-i18next'
 
 export const CreateForm = () => {
+    const { t } = useTranslation()
     const login = useField(userForm.fields.login)
     const name = useField(userForm.fields.name)
     const password = useField(userForm.fields.password)
@@ -17,7 +20,7 @@ export const CreateForm = () => {
 
     return (
         <Container onSubmit={handleSubmit}>
-            <label>Логин</label>
+            <label>{t('pages.users.createForm.login')}</label>
             <Input
                 placeholder={'user'}
                 value={login.value}
@@ -25,7 +28,7 @@ export const CreateForm = () => {
                 hasError={login.hasError()}
                 errorText={login.errorText()}
             />
-            <label>Имя</label>
+            <label>{t('pages.users.createForm.name')}</label>
             <Input
                 placeholder={''}
                 value={name.value}
@@ -33,7 +36,7 @@ export const CreateForm = () => {
                 hasError={name.hasError()}
                 errorText={name.errorText()}
             />
-            <label>Пароль</label>
+            <label>{t('pages.users.createForm.password')}</label>
             <Input
                 placeholder={'qwerty'}
                 value={password.value}
@@ -44,7 +47,7 @@ export const CreateForm = () => {
             />
             <Button $haveIcon type='submit'>
                 <Icon icon='add' />
-                Создать
+                {t('misc.create')}
             </Button>
         </Container>
     )

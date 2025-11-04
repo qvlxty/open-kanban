@@ -2,8 +2,6 @@ import React from 'react'
 import { useDrag, useDrop } from 'react-dnd'
 import styled, { css } from 'styled-components'
 
-import { AvatarThumb, Icon } from '@/shared/ui'
-import { themeVar } from '@/shared/ui/theming'
 
 
 import { TASK_ITEM } from '../../model/const'
@@ -11,6 +9,8 @@ import { sortCard } from '../../model/private'
 import { toNormalDateCalendar } from '@/shared/lib/dates'
 import { Link } from 'react-router'
 import { Routes } from '@/routes/config'
+import { AvatarThumb, themeVar } from 'igoresha-dev-ui-kit'
+import { Icon } from '@/shared/ui'
 
 
 type Props = {

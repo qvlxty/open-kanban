@@ -2,18 +2,20 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { CreateForm, UserList } from '@/features/users/view'
-import { TabBar } from '@/shared/ui'
+import { TabBar } from 'igoresha-dev-ui-kit'
+import { useTranslation } from 'react-i18next'
 
 export const UsersPage = () => {
     const [curPage, setCurPage] = React.useState<'list' | 'create'>('list')
+    const { t } = useTranslation()
     return (
         <Container>
             <TabBar
                 onSet={setCurPage}
                 selected={curPage}
                 options={[
-                    { value: 'list', text: 'Список пользователей' },
-                    { value: 'create', text: 'Добавить' },
+                    { value: 'list', title: t('pages.users.list') },
+                    { value: 'create', title: t('pages.users.create') },
                 ]}
             />
             {curPage === 'list' && (

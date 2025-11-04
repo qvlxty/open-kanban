@@ -1,10 +1,10 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 
-import { themeVar } from '@/shared/ui/theming'
 import { toNormalDateCalendar } from '@/shared/lib/dates'
 import { Link } from 'react-router'
 import { Routes } from '@/routes/config'
+import { themeVar } from 'igoresha-dev-ui-kit'
 
 type Props = {
     id: number,

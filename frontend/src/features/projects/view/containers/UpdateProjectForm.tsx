@@ -2,13 +2,15 @@ import styled from 'styled-components'
 import { useForm } from 'effector-forms'
 
 import React from 'react'
-import { Button, Input } from '@/shared/ui'
 import { $loading, deleteProject, projectForm } from '../../model/private'
 import { useUnit } from 'effector-react'
+import { Button, Input } from 'igoresha-dev-ui-kit'
+import { useTranslation } from 'react-i18next'
 
 
 export const UpdateProjectForm = () => {
     const { submit, fields } = useForm(projectForm)
+    const { t } = useTranslation()
     const loading = useUnit($loading)
 
     const handleSubmit = React.useCallback((e: React.FormEvent<HTMLFormElement>) => {
@@ -17,14 +19,14 @@ export const UpdateProjectForm = () => {
     }, [])
 
     const deleteHandler = React.useCallback(() => {
-        if (confirm('Удалить проект?')) {
+        if (confirm(t('pages.projects.deleteConfirm'))) {
             deleteProject(fields.id.value!)
         }
-    }, [])
+    }, [t])
 
     return (
         <Container onSubmit={handleSubmit}>
-            <label>Название проекта</label>
+            <label>{t('pages.projects.updateForm.name')}</label>
             <Input
                 value={fields.title.value}
                 onChange={fields.title.set}
@@ -35,10 +37,10 @@ export const UpdateProjectForm = () => {
             <Separator />
             <ButtonsCaption>
                 <Button disabled={loading} type='submit'>
-                    Сохранить
+                    {t('misc.save')}
                 </Button>
                 <Button disabled={loading} $danger onClick={() => deleteHandler()}>
-                    Удалить
+                    {t('misc.delete')}
                 </Button>
             </ButtonsCaption>
         </Container>

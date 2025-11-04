@@ -3,9 +3,11 @@ import { useGate, useList } from 'effector-react'
 
 import { SlotItem } from '../parts'
 import { SlotsGate, $nearTasks } from '../../model/private'
+import { useTranslation } from 'react-i18next'
 
 
 export const Slots = () => {
+    const { t } = useTranslation()
     const slots = useList($nearTasks, (item) => (
         <SlotItem
             stageName={item.stage.title}
@@ -20,7 +22,7 @@ export const Slots = () => {
 
     return (
         <Container>
-            <h1>Предстоящие события</h1>
+            <h1>{t('pages.slots.title')}</h1>
             <List>
                 {slots}
             </List>

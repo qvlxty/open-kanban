@@ -1,1 +1,0 @@
-export type ThemeItem = 'dark' | 'light'

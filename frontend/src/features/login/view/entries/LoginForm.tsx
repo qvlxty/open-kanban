@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import { useForm } from 'effector-forms'
 
-import { Button, Input } from '@/shared/ui'
 import { loginForm } from '../../model/private'
+import { Button, Input } from 'igoresha-dev-ui-kit'
 
 export const LoginForm = () => {
     const { submit, fields } = useForm(loginForm)
