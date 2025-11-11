@@ -1,33 +1,32 @@
 # Open-Kanban
 
-Self-hosted канбан-доска для управления небольшими проектами.
+A self-hosted kanban board for managing small projects.
 
 ![](./docs/prevPic.png)
 
-## Требования
+## Requirements
 
-- docker v28+
+- Docker v28+
 
-## Установка и запуск
+## Installation & Setup
 
 1. `cp .env.example .env`
-
 2. `docker compose up --build`
 
-## Конфигурация
+## Configuration
 
-Если требуется настроить доступ к базе данных, а так же авторизационный ключ сервера, то настройте параметры согласно .env названиям переменных.
+If you need to configure database access or the server authorization key, adjust the corresponding values in the .env file.
 
-### Первичная настройка
+### Initial Setup
 
-Для того, чтобы сервис работал, требуется запустить первичные миграции и создать пользователя.
-Для этого, после успешного запуска сервиса, требуется выполнить несколько команд:
+To ensure that the service works properly, you need to run initial migrations and create a user.
 
-1. `docker exec -it backend sh` // Войти в окружение сервиса backend
-2. `yarn add -D mikro-orm` // Установить cli для работы с версионированием схемы
+After the service has started successfully, run the following commands:
+1. `docker exec -it backend sh` // Enter the backend service environment
+2. `yarn add -D mikro-orm` // Install CLI tools for schema versioning
 3. `yarn migration:up`
 4. `yarn db:seed`
 
-### Обновление версий
+Updating versions
 
-Для обновления версий open-kanban используйте первые 3 команды из предыдущего пункта
+To update open-kanban versions, use the first 3 commands from the previous section.
